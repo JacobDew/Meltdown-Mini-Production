@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private Vector3 m_vForward;
     private Vector3 m_vPlanePoint;
     private Vector3 m_vPlaneNormal;
+    private int LayerMask = 1 << 13;
 
 
     private float m_fHealth;
@@ -31,14 +32,19 @@ public class Player : MonoBehaviour
     private int m_iWeapon;
     private float m_fFireDelay;
     private float m_fDamage;
+    private int m_iAmmoCount;
+    private int m_iHits;
+    private float m_fProjectileSpeed;
 
     private int m_iSwapCombo;
+    private float m_SwapMultiplier;
     private float m_fComboTimer;
 
 
 	// Use this for initialization
 	void Start()
     {
+        m_iAmmoCount = 20;
         m_Player = GameObject.FindGameObjectWithTag("Player");
         m_pCombo = GameObject.FindGameObjectWithTag("Combo");
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
@@ -64,23 +70,21 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        
         if (Input.GetMouseButton(0))
 		{
-			Debug.Log("Pressed left click.");
-            if (0.0f > m_fLastShot)
+            if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
             {
-                Debug.Log(m_fLastShot);
-                m_fLastShot = m_fFireDelay;
+                m_iAmmoCount -= 1;
                 RaycastHit HitPos;
-                if (Physics.Raycast(ray, out HitPos))
+                Ray Temp = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.Log(m_iAmmoCount);
+                m_fLastShot = m_fFireDelay;
+                if (Physics.Raycast(Temp.origin, Temp.direction, out HitPos, LayerMask))
                 {
-                    Debug.Log("Raycast");
                     if (null != HitPos.point)
                     {
-                        Debug.Log("Hit!");
+                        Debug.Log(HitPos.point);
                         GameObject TempObject;
                         switch (m_iWeapon)
                         {
@@ -113,7 +117,7 @@ public class Player : MonoBehaviour
                         TempObject.transform.position = m_Player.transform.position;
                         TempObject.transform.rotation = m_Player.transform.rotation;
                         TempObject.GetComponent<ProjectileScript>().SetDirection(Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x,
-                            0.0f, HitPos.point.z - m_Player.transform.position.z)), (m_fDamage * ((float)m_iSwapCombo % 10.0f) + 1.0f));
+                            0.0f, HitPos.point.z - m_Player.transform.position.z)), (m_fDamage * m_SwapMultiplier));
 
                         //sound effect for bullet
                         FindObjectOfType<AudioManager>().Play("Laser");
@@ -122,21 +126,25 @@ public class Player : MonoBehaviour
             }
         }
         
-		if (Input.GetMouseButton(1)) {
-			Debug.Log("Pressed right click.");
+		if (Input.GetMouseButton(1))
+        {
+
 		}
 
 		if (Input.GetMouseButton(2))
 		{
-			Debug.Log("Pressed middle click.");
+
 		}
 
         m_fLastShot -= Time.deltaTime;
         m_fComboTimer -= Time.deltaTime;
         if (0.0f > m_fComboTimer)
         {
-            m_iSwapCombo = -1;
-            SetWeapon(m_iWeapon);
+            m_iSwapCombo = 0;
+            m_SwapMultiplier = ((float)m_iSwapCombo / 10.0f) + 1.0f;
+            m_pCombo.GetComponent<Text>().text = "Combo: " + m_iSwapCombo.ToString();
+            m_pMultiplier.GetComponent<Text>().text = " Multiplier: " + m_SwapMultiplier.ToString();
+            //SetWeapon(m_iWeapon);
         }
         
     }
@@ -146,41 +154,47 @@ public class Player : MonoBehaviour
         m_iWeapon = _Weapon;
         m_fComboTimer = 10.0f;
         m_iSwapCombo += 1;
+        m_SwapMultiplier = ((float)m_iSwapCombo / 10.0f) + 1.0f;
         switch (_Weapon)
         {
             case 0:
                 {
+                    m_iAmmoCount = 150;
                     m_fFireDelay = 0.2f;
-                    m_fDamage = 0.6f;
+                    m_fDamage = 2.6f;
                 }
                 break;
             case 1:
                 {
+                    m_iAmmoCount = 50;
                     m_fFireDelay = 1.0f;
-                    m_fDamage = 5.0f;
+                    m_fDamage = 20.0f;
                 }
                 break;
             case 2:
                 {
+                    m_iAmmoCount = 230;
                     m_fFireDelay = 0.1f;
-                    m_fDamage = 0.4f;
+                    m_fDamage = 1.4f;
                 }
                 break;
             case 3:
                 {
+                    m_iAmmoCount = 1000;
                     m_fFireDelay = 0.05f;
-                    m_fDamage = 0.15f;
+                    m_fDamage = 0.85f;
                 }
                 break;
             default:
                 {
-                    m_fFireDelay = 0.5f;
-                    m_fDamage = 0.15f;
+                    m_iAmmoCount = 150;
+                    m_fFireDelay = 0.2f;
+                    m_fDamage = 2.6f;
                 }
                 break;
         }
         m_pCombo.GetComponent<Text>().text = "Combo: " + m_iSwapCombo.ToString();
-        m_pMultiplier.GetComponent<Text>().text = " Multiplier: " + (((float)m_iSwapCombo / 10.0f) + +1.0f).ToString();
+        m_pMultiplier.GetComponent<Text>().text = " Multiplier: " + m_SwapMultiplier.ToString();
     }
 
     public void TakeDamage(float _Damage)

@@ -25,9 +25,11 @@ public class ControlMain : MonoBehaviour
         if (5.0f < m_fTimer)
         {
             GameObject Temp = Instantiate(m_pWeaponObject);
-            Temp.transform.position = new Vector3(Random.Range(-20.0f, 20.0f), 1.0f, Random.Range(-20.0f, 20.0f));
+            Temp.transform.position = new Vector3(Random.Range(-30.0f, 30.0f), 1.0f, Random.Range(-50.0f, 50.0f));
             Temp.transform.rotation = Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f);
-            Temp.GetComponent<Weapon0>().Initialize(Random.Range(0, 3));
+            int WeaponType = Random.Range(0, 3);
+            Temp.GetComponent<Weapon0>().Initialize(WeaponType);
+            Temp.GetComponent<Renderer>().material = Resources.Load<Material>(WeaponType.ToString());
             m_fTimer = 0.0f;
         }
         m_fTimer += Time.deltaTime;
