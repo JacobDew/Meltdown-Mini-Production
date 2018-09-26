@@ -39,7 +39,6 @@ public class TowerEnemeyAI : MonoBehaviour {
         m_fDamage = 7.0f;
         m_fDamageDelay = 0.0f;
         m_pTower = GameObject.FindGameObjectWithTag("Tower");
-        this.gameObject.AddComponent<EnemyDeathScript>();
         this.gameObject.AddComponent<EnemyHealthScript>();
         this.gameObject.GetComponent<EnemyHealthScript>().Initialize(3.5f);
     }

@@ -35,7 +35,6 @@ public class EnemyAI : MonoBehaviour {
         m_rRandom = new System.Random();
         m_fDamage = 5.0f;
         m_fDamageDelay = 0.0f;
-        this.gameObject.AddComponent<EnemyDeathScript>();
         this.gameObject.AddComponent<EnemyHealthScript>();
         this.gameObject.GetComponent<EnemyHealthScript>().Initialize(2.0f);
     }
