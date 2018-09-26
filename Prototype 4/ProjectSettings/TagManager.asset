@@ -12,6 +12,7 @@ TagManager:
   - Projectile
   - Tower
   - TowerHealth
+  - Perk
   layers:
   - Default
   - TransparentFX
