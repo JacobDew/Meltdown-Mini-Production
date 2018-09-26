@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private int m_iAmmoCount;
     private int m_iHits;
     private float m_fProjectileSpeed;
+    private int m_iBasePierce;  //  number of enemies the projectile can hit.
 
     private int m_iSwapCombo;
     private float m_SwapMultiplier;
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
+        m_fProjectileSpeed = 20;
+        m_iBasePierce = 1;
         m_iAmmoCount = 20;
         m_Player = GameObject.FindGameObjectWithTag("Player");
         m_pCombo = GameObject.FindGameObjectWithTag("Combo");
@@ -116,8 +119,8 @@ public class Player : MonoBehaviour
                         }
                         TempObject.transform.position = m_Player.transform.position;
                         TempObject.transform.rotation = m_Player.transform.rotation;
-                        TempObject.GetComponent<ProjectileScript>().SetDirection(Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x,
-                            0.0f, HitPos.point.z - m_Player.transform.position.z)), (m_fDamage * m_SwapMultiplier));
+                        TempObject.GetComponent<ProjectileScript>().Initialize(Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x,
+                            0.0f, HitPos.point.z - m_Player.transform.position.z)), (m_fDamage * m_SwapMultiplier), m_fProjectileSpeed, m_iBasePierce);
 
                         //sound effect for bullet
                         FindObjectOfType<AudioManager>().Play("Laser");
@@ -162,6 +165,7 @@ public class Player : MonoBehaviour
                     m_iAmmoCount = 150;
                     m_fFireDelay = 0.2f;
                     m_fDamage = 2.6f;
+                    m_fProjectileSpeed = 20.0f;
                 }
                 break;
             case 1:
@@ -169,6 +173,7 @@ public class Player : MonoBehaviour
                     m_iAmmoCount = 50;
                     m_fFireDelay = 1.0f;
                     m_fDamage = 20.0f;
+                    m_fProjectileSpeed = 50.0f;
                 }
                 break;
             case 2:
@@ -176,6 +181,7 @@ public class Player : MonoBehaviour
                     m_iAmmoCount = 230;
                     m_fFireDelay = 0.1f;
                     m_fDamage = 1.4f;
+                    m_fProjectileSpeed = 90.0f;
                 }
                 break;
             case 3:
@@ -183,6 +189,7 @@ public class Player : MonoBehaviour
                     m_iAmmoCount = 1000;
                     m_fFireDelay = 0.05f;
                     m_fDamage = 0.85f;
+                    m_fProjectileSpeed = 30.0f;
                 }
                 break;
             default:
@@ -190,6 +197,7 @@ public class Player : MonoBehaviour
                     m_iAmmoCount = 150;
                     m_fFireDelay = 0.2f;
                     m_fDamage = 2.6f;
+                    m_fProjectileSpeed = 20.0f;
                 }
                 break;
         }

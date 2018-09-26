@@ -22,7 +22,7 @@ public class ProjectileScript : MonoBehaviour
     {
 		if (0.0f != m_vDirection.x || 0.0f != m_vDirection.z)
         {
-            this.transform.position += m_vDirection * Time.deltaTime * m_fSpeed;
+            this.transform.position += m_vDirection * m_fSpeed * Time.deltaTime;
         }
 	}
 
@@ -39,6 +39,10 @@ public class ProjectileScript : MonoBehaviour
 
     public void Initialize(Vector3 _Direction, float _Damage, float _Speed, int _Pierce)
     {
-       
+        this.transform.position += _Direction;
+        m_vDirection = _Direction;
+        m_fDamage = _Damage;
+        m_fSpeed = _Speed;
+        m_iPierce = _Pierce;
     }
 }
