@@ -9,6 +9,11 @@ public class PlayerMovement : MonoBehaviour {
     public Ray ray;
     public float playerSpeed;
 
+    void Start()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
