@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour {
 
             transform.rotation = targetRotation;
 
-            transform.Translate(Vector3.forward * Input.GetAxis("Vertical") * Time.deltaTime * playerSpeed, Space.World);
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * Time.deltaTime * playerSpeed, Space.World);
+            transform.Translate(Vector3.Normalize(Vector3.forward + Vector3.right) * Input.GetAxis("Vertical") * Time.deltaTime * playerSpeed, Space.World);
+            transform.Translate(Vector3.Normalize(Vector3.right - Vector3.forward) * Input.GetAxis("Horizontal") * Time.deltaTime * playerSpeed, Space.World);
         }
 
     }

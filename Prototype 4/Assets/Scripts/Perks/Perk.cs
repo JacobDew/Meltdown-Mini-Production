@@ -8,6 +8,8 @@ public class Perk : MonoBehaviour
     private Vector3 m_fHoverVec;
     private Vector3 m_vRotationAxis = new Vector3(0.0f, 1.0f, 0.0f);
 
+    private int m_iPerk = 0;
+
     private float m_fHoverDirection;
     private float m_fRotation;
     private float m_fHoverSpeed;
@@ -37,11 +39,17 @@ public class Perk : MonoBehaviour
         this.transform.Translate(m_fHoverVec * m_fHoverSpeed * Time.deltaTime);
 
         //  Check distance to player, add perk if so.
+        if (2.0f > Vector3.Distance(this.transform.position, m_pPlayer.transform.position))
+        {
+            m_pPlayer.GetComponent<Player>().AddPerk(m_iPerk);
+            Destroy(this.gameObject);
+        }
     }
 
     public void Initialize(Vector3 _Position, int _Type)
     {
         m_pPlayer = GameObject.FindGameObjectWithTag("Player");
+        m_iPerk = _Type;
         this.transform.position = _Position;
         m_fRotation = Random.Range(-1.0f, 1.0f) * 100.0f;
         m_fHoverVec = new Vector3(0.0f, 0.0f, 0.0f);

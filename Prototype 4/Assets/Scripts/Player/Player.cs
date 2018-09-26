@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     {
         m_fProjectileSpeed = 20;
         m_iBasePierce = 1;
-        m_iAmmoCount = 20;
+        m_iAmmoCount = 200;
         m_Player = GameObject.FindGameObjectWithTag("Player");
         m_pCombo = GameObject.FindGameObjectWithTag("Combo");
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         m_fLastShot = 0.0f;
         m_fFireDelay = 0.2f;
         m_iWeapon = 0;
+        m_fDamage = 2.6f;
         m_iSwapCombo = 0;
         m_fComboTimer = 0.0f;
         m_fHealth = 100.0f;
@@ -217,5 +218,32 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
         m_pHealth.GetComponent<Text>().text = "Health: " + m_fHealth.ToString();
+    }
+
+    public void AddPerk(int _Type)
+    {
+        switch (_Type)
+        {
+            case 0:
+                {
+                    m_iBasePierce += 1;
+                }
+                break;
+            case 1:
+                {
+
+                }
+                break;
+            case 2:
+                {
+
+                }
+                break;
+            default:
+                {
+                    m_iBasePierce += 1;
+                }
+                break;
+        }
     }
 }
