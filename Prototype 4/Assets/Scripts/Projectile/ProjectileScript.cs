@@ -37,6 +37,20 @@ public class ProjectileScript : MonoBehaviour
         return m_fDamage;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Follower")
+        {
+            other.gameObject.GetComponent<EnemyHealthScript>().TakeDamage(m_fDamage);
+            m_iPierce -= 1;
+            if (0 == m_iPierce)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
     public void Initialize(Vector3 _Direction, float _Damage, float _Speed, int _Pierce)
     {
         this.transform.position += _Direction;

@@ -20,8 +20,6 @@ public class EnemyAI : MonoBehaviour {
     private const float c_fMaxSpeed = 4.5f;
     private const float c_fForce = 0.15f;
 
-    private float m_fHealth;
-
     private float m_fDamage;
     private float m_fDamageDelay;
 
@@ -37,7 +35,9 @@ public class EnemyAI : MonoBehaviour {
         m_rRandom = new System.Random();
         m_fDamage = 5.0f;
         m_fDamageDelay = 0.0f;
-        m_fHealth = 2.0f;
+        this.gameObject.AddComponent<EnemyDeathScript>();
+        this.gameObject.AddComponent<EnemyHealthScript>();
+        this.gameObject.GetComponent<EnemyHealthScript>().Initialize(2.0f);
     }
 
     // Update is called once per frame
@@ -84,33 +84,9 @@ public class EnemyAI : MonoBehaviour {
 
     }
 
-    //Collision with bullet
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Bullet")
-        {
-            m_fHealth -= other.gameObject.GetComponent<ProjectileScript>().GetDamage();
-            Destroy(other.gameObject);
-            if (0.0f > m_fHealth)
-            {
-                GameObject Temp = Resources.Load<GameObject>("X");
-                Vector3 vTemp = this.transform.position;
-                short sX = 0;
-                while (6 > sX)
-                {
-                    GameObject Temp2 = Instantiate(Temp);
-                    Temp2.transform.position = this.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), -1.0f, Random.Range(-0.3f, 0.3f));
-                    Temp2.transform.Rotate(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));
-                    sX++;
-                }
-                Destroy(gameObject);
-            }
-        }
-
-    }
-
     void Steer(Vector3 _Direction, float _Force)
     {
 	    m_vForward += ((Vector3.Normalize(_Direction - m_vForward) * c_fMaxSpeed) - m_vForward) * _Force;
     }
+    
 }
