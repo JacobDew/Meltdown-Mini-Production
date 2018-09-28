@@ -16,7 +16,10 @@ public class TowerHealth : MonoBehaviour
     {
         m_pHealthDisplay = GameObject.FindGameObjectWithTag("TowerHealth");
         m_fTowerHealth = 2000.0f;
-        m_pHealthDisplay.GetComponent<Text>().text = "Tower Health: " + m_fTowerHealth.ToString();
+        m_pHealthDisplay.transform.position = new Vector3(-4.5312f, 10.9f, 17.9f);
+        m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = m_fTowerHealth;
+        m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
+        m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fTowerHealth;
     }
 	
 	// Update is called once per frame
@@ -32,6 +35,6 @@ public class TowerHealth : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-        m_pHealthDisplay.GetComponent<Text>().text = "Tower Health: " + m_fTowerHealth.ToString();
+        m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fTowerHealth;
     }
 }

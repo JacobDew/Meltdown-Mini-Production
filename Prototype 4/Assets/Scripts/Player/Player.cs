@@ -9,9 +9,7 @@ public class Player : MonoBehaviour
 {
     private GameObject m_Player;
 
-    private GameObject m_pCombo;
     private GameObject m_pHealth;
-    private GameObject m_pMultiplier;
 
     private GameObject m_pCube0;
     private GameObject m_pCube1;
@@ -49,9 +47,7 @@ public class Player : MonoBehaviour
         m_iBasePierce = 1;
         m_iAmmoCount = 200;
         m_Player = GameObject.FindGameObjectWithTag("Player");
-        m_pCombo = GameObject.FindGameObjectWithTag("Combo");
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
-        m_pMultiplier = GameObject.FindGameObjectWithTag("Multiplier");
         m_pCube0 = Resources.Load<GameObject>("Cube0");
         m_pCube1 = Resources.Load<GameObject>("Cube1");
         m_pCube2 = Resources.Load<GameObject>("Cube2");
@@ -66,15 +62,17 @@ public class Player : MonoBehaviour
         m_iSwapCombo = 0;
         m_fComboTimer = 0.0f;
         m_fHealth = 100.0f;
-        m_pHealth.GetComponent<Text>().text = "Health: " + m_fHealth.ToString();
-        m_pCombo.GetComponent<Text>().text = "Combo: " + m_iSwapCombo.ToString();
-        m_pMultiplier.GetComponent<Text>().text = " Multiplier: " + (((float)m_iSwapCombo / 10.0f) + 1.0f).ToString();
+        m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y , m_Player.transform.position.z );
+        m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = 100f;
+        m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
     }
 	
 	// Update is called once per frame
 	void Update()
     {
-
+        //Updates posistion and value of Player healthBar
+        m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y + 2.0f, m_Player.transform.position.z);
+        m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fHealth;
         if (Input.GetMouseButton(0))
 		{
             if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
@@ -146,8 +144,6 @@ public class Player : MonoBehaviour
         {
             m_iSwapCombo = 0;
             m_SwapMultiplier = ((float)m_iSwapCombo / 10.0f) + 1.0f;
-            m_pCombo.GetComponent<Text>().text = "Combo: " + m_iSwapCombo.ToString();
-            m_pMultiplier.GetComponent<Text>().text = " Multiplier: " + m_SwapMultiplier.ToString();
             //SetWeapon(m_iWeapon);
         }
         
@@ -202,8 +198,7 @@ public class Player : MonoBehaviour
                 }
                 break;
         }
-        m_pCombo.GetComponent<Text>().text = "Combo: " + m_iSwapCombo.ToString();
-        m_pMultiplier.GetComponent<Text>().text = " Multiplier: " + m_SwapMultiplier.ToString();
+
     }
 
     public void TakeDamage(float _Damage)
@@ -217,7 +212,7 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-        m_pHealth.GetComponent<Text>().text = "Health: " + m_fHealth.ToString();
+        
     }
 
     public void AddPerk(int _Type)

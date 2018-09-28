@@ -10,11 +10,22 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    public GameObject Slider;
+    private GameObject Slider;
+
+    public static AudioManager instance;
 
     // Use this for initialization
     void Awake()
     {
+
+        if (instance == null )
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         Slider = GameObject.Find("Slider");
 
@@ -40,27 +51,30 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (Sound s in sounds)
+        {
+            if(Slider == null)
+            {
+                Slider = GameObject.Find("Slider");
+                Slider.GetComponent<Slider>().value = s.source.volume;
 
+            }
+
+            s.source.volume = Slider.GetComponent<Slider>().value;
+        }
     }
 
     public void Play(string name)
     {
-      
-
         Sound s = Array.Find(sounds, sound => sound.Name == name);
 
-        if (name == "Laser")
-        {
-            s.source.pitch = UnityEngine.Random.Range(0.4f, 1f);
-            s.source.volume = 0.7f;
-
-        }
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found");
             return;
-            
+
         }
+
         s.source.Play();
 
     }
