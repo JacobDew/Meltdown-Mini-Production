@@ -27,10 +27,84 @@ public class PlayerMovement : MonoBehaviour {
             Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
 
             transform.rotation = targetRotation;
-
-            transform.Translate(Vector3.Normalize(Vector3.forward + Vector3.right) * Input.GetAxis("Vertical") * Time.deltaTime * playerSpeed, Space.World);
-            transform.Translate(Vector3.Normalize(Vector3.right - Vector3.forward) * Input.GetAxis("Horizontal") * Time.deltaTime * playerSpeed, Space.World);
+            
         }
-
+        Movement();
     }
+
+    private void Movement()
+    {
+        if (true == Input.GetKey(KeyCode.D) && true == Input.GetKey(KeyCode.A))
+        {
+            if (true == Input.GetKey(KeyCode.W))
+            {
+                //  Up movement.
+                this.transform.position += new Vector3(0.7071f, 0.0f, 0.7071f) * playerSpeed * Time.deltaTime;
+            }
+            else if (true == Input.GetKey(KeyCode.S))
+            {
+                //  Down movement.
+                this.transform.position += new Vector3(-0.7071f, 0.0f, -0.7071f) * playerSpeed * Time.deltaTime;
+            }
+        }
+        else if (true == Input.GetKey(KeyCode.W) && true == Input.GetKey(KeyCode.S))
+        {
+            if (true == Input.GetKey(KeyCode.D))
+            {
+                //  Right movement.
+                this.transform.position += new Vector3(0.7071f, 0.0f, -0.7071f) * playerSpeed * Time.deltaTime;
+            }
+            else if (true == Input.GetKey(KeyCode.A))
+            {
+                //  Left movement.
+                this.transform.position += new Vector3(-0.7071f, 0.0f, 0.7071f) * playerSpeed * Time.deltaTime;
+            }
+        }
+        else if (true == Input.GetKey(KeyCode.D) && true == Input.GetKey(KeyCode.W))
+        {
+            //  Right Up movement.
+            this.transform.position += new Vector3(1.0f, 0.0f, 0.0f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.W) && true == Input.GetKey(KeyCode.A))
+        {
+            //  Up Left movement.
+            this.transform.position += new Vector3(0.0f, 0.0f, 1.0f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.A) && true == Input.GetKey(KeyCode.S))
+        {
+            //  Left Down movement.
+            this.transform.position += new Vector3(-1.0f, 0.0f, 0.0f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.S) && true == Input.GetKey(KeyCode.D))
+        {
+            //  Down Right movement.
+            this.transform.position += new Vector3(0.0f, 0.0f, -1.0f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.D))
+        {
+            //  Right movement.
+            this.transform.position += new Vector3(0.7071f, 0.0f, -0.7071f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.W))
+        {
+            //  Up movement.
+            this.transform.position += new Vector3(0.7071f, 0.0f, 0.7071f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.A))
+        {
+            //  Left movement.
+            this.transform.position += new Vector3(-0.7071f, 0.0f, 0.7071f) * playerSpeed * Time.deltaTime;
+        }
+        else if (true == Input.GetKey(KeyCode.S))
+        {
+            //  Down movement.
+            this.transform.position += new Vector3(-0.7071f, 0.0f, -0.7071f) * playerSpeed * Time.deltaTime;
+        }
+        else
+        {
+
+        }
+    }
+
+
 }

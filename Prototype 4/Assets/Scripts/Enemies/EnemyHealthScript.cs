@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyHealthScript : MonoBehaviour
 {
+    private GameObject m_pPlayer;
 
     private float m_fHealth = 2.0f;
 
     // Use this for initialization
     void Start()
     {
-
+        m_pPlayer = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame

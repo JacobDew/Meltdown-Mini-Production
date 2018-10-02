@@ -11,30 +11,25 @@ public class ProjectileScript : MonoBehaviour
     private int m_iPierce;
 
 
-	// Use this for initialization
-	void Awake()
+    // Use this for initialization
+    void Awake()
     {
 
     }
-	
-	// Update is called once per frame
-	void Update()
+
+    // Update is called once per frame
+    void Update()
     {
-		if (0.0f != m_vDirection.x || 0.0f != m_vDirection.z)
+        if (0.0f != m_vDirection.x || 0.0f != m_vDirection.z)
         {
             this.transform.position += m_vDirection * m_fSpeed * Time.deltaTime;
         }
-	}
+    }
 
     //  When projectile goes offscreen it deletes itself.
     void OnBecameInvisible()
     {
         Destroy(gameObject);
-    }
-
-    public float GetDamage()
-    {
-        return m_fDamage;
     }
 
     void OnTriggerEnter(Collider other)
@@ -43,7 +38,7 @@ public class ProjectileScript : MonoBehaviour
         {
             other.gameObject.GetComponent<EnemyHealthScript>().TakeDamage(m_fDamage);
             m_iPierce -= 1;
-            if (0 == m_iPierce)
+            if (0 > m_iPierce)
             {
                 Destroy(gameObject);
             }
@@ -59,4 +54,6 @@ public class ProjectileScript : MonoBehaviour
         m_fSpeed = _Speed;
         m_iPierce = _Pierce;
     }
+
+
 }
