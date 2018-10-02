@@ -3,115 +3,101 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour
+{
+    //  Positions outside of the visible portion game world.
+    private Vector3 m_vBottomRight = new Vector3(2.0f, 1.0f, 54.0f);
+    private Vector3 m_vTopRight = new Vector3(88.0f, 1.0f, 26.0f);
+    private Vector3 m_vTopLeft = new Vector3(24.0f, 1.0f, 80.0f);
+    private Vector3 m_vBottomLeft = new Vector3(50.0f, 1.0f, 3.0f);
 
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    private GameObject[] m_pEnemyTypes;
+
+    //  Current Wave.
+    private int m_iWaveNumber = 0;
+    private int m_iLevel = 1;
+
+    private const int m_iWaveMaxLv1 = 3;
+    private const int m_iWaveMaxLv2 = 3;
+    private const int m_iWaveMaxLv3 = 3;
+
+    private bool m_bWaveActive = false;
+
+    //  Delay between waves.
+    private float m_fWaveTimer = 5.0f;
+    private const float m_fWaveDelay = 5.0f;
+
+    //  Number of enemies for current wave
+    private int m_iEnemyCount = 0;
+    private int m_iEnemyMax = 10;
+
+    //  Timers for enemy spawning with max and min delay.
+    private float m_fSpawnTimer = 0.0f;
+    private float m_fSpawnRate = 0.5f;
+    private const float m_fMaxSpawnRate = 0.05f;
+    private const float m_fMinSpawnRate = 0.5f;
 
 
-    [System.Serializable]
-    public class Wave
+    void Start()
     {
-        public string name;
-        public Transform PlayerEnemy;
-        public Transform TowerEnemy;
-        public int EnemyCount;
-        public float SpawnRate;
-
-    }
-
-    public Wave[] Waves;
-    public Text WaveDisplay;
-
-    private int NextWave = 0;
-
-    public Transform[] SpawnPoints;
-
-    public float timeBetweenWave = 5f;
-    public float WaveCountdown;
-
-    private float SearchCountdown = 1f;
-
-    public SpawnState State = SpawnState.COUNTING;
-
-    
-
-    void Start ()
-    {
-        WaveCountdown -= 0.3f;
-        if (SpawnPoints.Length == 0)
-        {
-            Debug.Log("ERROR: No Spawnpoints refenced");
-
-        }
-
-        WaveCountdown = timeBetweenWave;
-
-
+        m_pEnemyTypes = new GameObject[] { Resources.Load<GameObject>("Enemey"), Resources.Load<GameObject>("TowerEnemey") };
     }
     
     void Update()
     {
-        if (State == SpawnState.WAITING)
+        if (true == m_bWaveActive)
         {
-            //check if enemiesa re still alive
-            if (!EnemeyIsAlive())
+            if (m_iEnemyMax < m_iEnemyCount)
             {
-                //Begin new wave
                 WaveCompleted();
             }
             else
             {
-                return;
+                SpawnEnemy();
             }
-        }
 
-        if (WaveCountdown <= 0)
+        }
+        else if (0.0f < m_fWaveTimer)
         {
-            if (State != SpawnState.SPAWNING)
+            m_fWaveTimer -= Time.deltaTime;
+            Debug.Log(m_fWaveTimer);
+            if (0.0f > m_fWaveTimer)
             {
-                //Stats spawning wave
-                StartCoroutine(SpawnWave(Waves[NextWave]));
-
+                m_bWaveActive = true;
+                m_iWaveNumber += 1;
+                if (true == LevelComplete())
+                {
+                    //  Level transition.
+                }
+                else
+                {
+                    m_iEnemyCount = 0;
+                }
             }
-
         }
-
         else
         {
-            WaveCountdown -= Time.deltaTime;
 
         }
-
-        WaveDisplay.text = ("Wave: " + (NextWave + 1).ToString());
     }
 
     void WaveCompleted()
     {
         Debug.Log("Wave Completed");
-
-        State = SpawnState.COUNTING;
-        WaveCountdown = timeBetweenWave;
-
-        if(NextWave + 1 > Waves.Length - 1)
+        if (0 == GameObject.FindGameObjectsWithTag("Follower").Length)
         {
-            NextWave = 0;
-            Debug.Log("ALL WAVES COMPLETE!  Lopping...");
+            m_bWaveActive = false;
+            m_fWaveTimer = m_fWaveDelay;
+            //  Start Wave_Change Text animation.
         }
-        else
-        {
-            NextWave++;
-
-        }
-  
     }
 
     bool EnemeyIsAlive()
     {
-        SearchCountdown -= Time.deltaTime;
+        m_fWaveTimer -= Time.deltaTime;
 
-        if(SearchCountdown <= 0f)
+        if(m_fWaveTimer < 0.0f)
         {
-            SearchCountdown = 1f;
             if (GameObject.FindGameObjectsWithTag("Follower").Length == 0)
             {
 
@@ -121,46 +107,110 @@ public class EnemySpawner : MonoBehaviour {
 
         return true;
     }
-
-    IEnumerator SpawnWave(Wave _wave)
+    
+    private void SpawnEnemy()
     {
-        Debug.Log("Spawning wave" + _wave.name);
-        State = SpawnState.SPAWNING;
-
-        //Spawn
-        for (int i = 0; i < _wave.EnemyCount; i++)
+        if (0.0f > m_fSpawnTimer)
         {
-            //30% of spawning Tower Enemey
-            if(Random.Range(0,10) >= 4)
+            m_fSpawnTimer = m_fSpawnRate;
+            Vector3 vSpawnPosition;
+            switch (Random.Range(0, 4))
             {
-                SpawnEnemy(_wave.TowerEnemy);
+                case 0:
+                    {
+                        vSpawnPosition = m_vBottomRight - m_vTopRight;
+                        vSpawnPosition = vSpawnPosition * Random.Range(0.0f, 1.0f);
+                        vSpawnPosition = vSpawnPosition + m_vTopRight;
+                        //  Get direction vector
+                        //  Pick a point along the vector 0.0f to 1.0f
+                        //  Add vector back
+                    }
+                    break;
+                case 1:
+                    {
+                        vSpawnPosition = m_vTopRight - m_vTopLeft;
+                        vSpawnPosition = vSpawnPosition * Random.Range(0.0f, 1.0f);
+                        vSpawnPosition = vSpawnPosition + m_vTopLeft;
+                    }
+                    break;
+                case 2:
+                    {
+                        vSpawnPosition = m_vTopLeft - m_vBottomLeft;
+                        vSpawnPosition = vSpawnPosition * Random.Range(0.0f, 1.0f);
+                        vSpawnPosition = vSpawnPosition + m_vBottomLeft;
+                    }
+                    break;
+                case 3:
+                    {
+                        vSpawnPosition = m_vBottomLeft - m_vBottomRight;
+                        vSpawnPosition = vSpawnPosition * Random.Range(0.0f, 1.0f);
+                        vSpawnPosition = vSpawnPosition + m_vBottomRight;
+                    }
+                    break;
+                default:
+                    {
+                        vSpawnPosition = m_vBottomRight - m_vTopRight;
+                        vSpawnPosition = vSpawnPosition * Random.Range(0.0f, 1.0f);
+                        vSpawnPosition = vSpawnPosition + m_vTopRight;
+                    }
+                    break;
             }
-
-            else
-            {
-                SpawnEnemy(_wave.PlayerEnemy);
-            }
-           
-            yield return new WaitForSeconds(1f / _wave.SpawnRate);
+            GameObject Temp = Instantiate(m_pEnemyTypes[Random.Range(0, 2)]);
+            Temp.transform.position = vSpawnPosition;
+            m_iEnemyCount += 1;
         }
-
-
-
-        State = SpawnState.WAITING;
-
-        yield break;
+        m_fSpawnTimer -= Time.deltaTime;
     }
 
-
-    void SpawnEnemy(Transform _enemy)
+    private bool LevelComplete()
     {
-        Debug.Log("Spawning Enemy: " + _enemy.name);
-
-       
-
-        Transform _sp = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
-       
+        switch (m_iWaveNumber)
+        {
+            case 1:
+                {
+                    if (m_iWaveMaxLv1 > m_iWaveNumber)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                break;
+            case 2:
+                {
+                    if (m_iWaveMaxLv2 > m_iWaveNumber)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                break;
+            case 3:
+                {
+                    if (m_iWaveMaxLv3 > m_iWaveNumber)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                break;
+            default:
+                {
+                    //  No Level.
+                    return false;
+                }
+                break;
+        }
     }
+
+
 
 }

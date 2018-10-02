@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
                         TempObject.transform.position = m_Player.transform.position;
                         TempObject.transform.rotation = m_Player.transform.rotation;
                         TempObject.GetComponent<ProjectileScript>().Initialize(Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x,
-                            0.0f, HitPos.point.z - m_Player.transform.position.z)), m_iWeapon, m_fProjectileSpeed, m_iBasePierce);
+                            0.0f, HitPos.point.z - m_Player.transform.position.z)), m_fDamage * m_SwapMultiplier, m_fProjectileSpeed, m_iBasePierce);
 
                         //sound effect for bullet
                         FindObjectOfType<AudioManager>().Play("Laser");
