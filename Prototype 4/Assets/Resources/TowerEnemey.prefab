@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54724560227868328}
   - component: {fileID: 65785379596811026}
   - component: {fileID: 114597198822808872}
+  - component: {fileID: 195101094889006984}
   m_Layer: 0
   m_Name: TowerEnemey
   m_TagString: Follower
@@ -137,3 +138,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93423816a693aab4a92cca287011e3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &195101094889006984
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336061990996940}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.5
+  m_Speed: 3.5
+  m_Acceleration: 20
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 3
+  m_BaseOffset: -0.08
+  m_WalkableMask: 5
+  m_ObstacleAvoidanceType: 4

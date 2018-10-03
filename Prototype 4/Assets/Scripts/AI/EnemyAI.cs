@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour {
 
 	
     private GameObject m_Player;
     private GameObject[] m_Followers;
+
+    private NavMeshAgent Agent;
 
     private float m_fDistance;
     private Vector3 m_vTarget;
@@ -27,6 +30,9 @@ public class EnemyAI : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.speed = c_fMaxSpeed * 5;
+
         m_fSpeed = 0.0f;
         m_bArraySet = false;
         m_fDelay = 0.0f;
@@ -67,9 +73,16 @@ public class EnemyAI : MonoBehaviour {
         }
         m_vForward += ((Vector3.Normalize(m_vTarget - m_vForward) * c_fMaxSpeed) - m_vForward) * c_fForce;
         Vector3 Temp = ((m_vForward * m_fSpeed) * Time.deltaTime);
-        this.transform.Translate(Temp.x, 0.0f, Temp.z);
 
-        Quaternion targetRotation = Quaternion.LookRotation(m_Player.transform.position - transform.position);
+        if (gameObject.transform.position != m_vTarget)
+        {
+            Agent.SetDestination(m_vTarget);
+        }
+        
+
+
+
+         Quaternion targetRotation = Quaternion.LookRotation(m_Player.transform.position - transform.position);
 
         //transform.rotation = targetRotation;
         m_vTarget -= Temp;

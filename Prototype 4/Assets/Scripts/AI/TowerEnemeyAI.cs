@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TowerEnemeyAI : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class TowerEnemeyAI : MonoBehaviour {
     private GameObject[] m_Followers;
     private GameObject m_Player;
     private GameObject m_pTower;
+
+    private NavMeshAgent Agent;
 
     private float m_fDistance;
     private Vector3 m_vTarget;
@@ -29,6 +32,9 @@ public class TowerEnemeyAI : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.speed = c_fMaxSpeed * 5;
+
         m_fSpeed = 0.0f;
         m_bArraySet = false;
         m_fDelay = 0.0f;
@@ -71,11 +77,11 @@ public class TowerEnemeyAI : MonoBehaviour {
         }
         m_vForward += ((Vector3.Normalize(m_vTarget - m_vForward) * c_fMaxSpeed) - m_vForward) * c_fForce;
         Vector3 Temp = ((m_vForward * m_fSpeed) * Time.deltaTime);
-        this.transform.Translate(Temp.x, 0.0f, Temp.z);
+        Agent.destination = m_vTarget;
 
         Quaternion targetRotation = Quaternion.LookRotation(m_Target.transform.position - transform.position);
 
-        //transform.rotation = targetRotation;
+       // transform.rotation = targetRotation;
         m_vTarget -= Temp;
 
 
