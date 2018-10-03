@@ -31,7 +31,7 @@ public class EnemyHealthScript : MonoBehaviour
             while (6 > sX)
             {
                 GameObject Temp2 = Instantiate(Temp);
-                Temp2.transform.position = this.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), -1.0f, Random.Range(-0.3f, 0.3f));
+                Temp2.transform.position = this.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), 1.0f, Random.Range(-0.3f, 0.3f));
                 Temp2.transform.Rotate(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));
                 sX++;
             }
