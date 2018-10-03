@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class EnemySpawner : MonoBehaviour
 {
     //  Positions outside of the visible portion game world.
-    private Vector3 m_vBottomRight = new Vector3(2.0f, 1.0f, 54.0f);
-    private Vector3 m_vTopRight = new Vector3(88.0f, 1.0f, 26.0f);
-    private Vector3 m_vTopLeft = new Vector3(24.0f, 1.0f, 80.0f);
-    private Vector3 m_vBottomLeft = new Vector3(50.0f, 1.0f, 3.0f);
+    private Vector3 m_vBottomRight = new Vector3(92.2f, 1.0f, -46.9f);
+    private Vector3 m_vTopRight = new Vector3(92.2f, 1.0f, 70.5f);
+    private Vector3 m_vTopLeft = new Vector3(-51.1f, 1.0f, 70.5f);
+    private Vector3 m_vBottomLeft = new Vector3(-51.1f, 1.0f, -46.9f);
 
     private GameObject[] m_pEnemyTypes;
 
@@ -24,16 +24,16 @@ public class EnemySpawner : MonoBehaviour
     private bool m_bWaveActive = false;
 
     //  Delay between waves.
-    private float m_fWaveTimer = 5.0f;
-    private const float m_fWaveDelay = 5.0f;
+    private float m_fWaveTimer = 1.0f;
+    private const float m_fWaveDelay = 1.0f;
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
-    private int m_iEnemyMax = 10;
+    private int m_iEnemyMax = 50;
 
     //  Timers for enemy spawning with max and min delay.
     private float m_fSpawnTimer = 0.0f;
-    private float m_fSpawnRate = 0.5f;
+    private float m_fSpawnRate = 0.1f;
     private const float m_fMaxSpawnRate = 0.05f;
     private const float m_fMinSpawnRate = 0.5f;
 
@@ -63,14 +63,15 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log(m_fWaveTimer);
             if (0.0f > m_fWaveTimer)
             {
-                m_bWaveActive = true;
-                m_iWaveNumber += 1;
                 if (true == LevelComplete())
                 {
                     //  Level transition.
+                    m_iLevel += 1;
                 }
                 else
                 {
+                    m_bWaveActive = true;
+                    m_iWaveNumber += 1;
                     m_iEnemyCount = 0;
                 }
             }
