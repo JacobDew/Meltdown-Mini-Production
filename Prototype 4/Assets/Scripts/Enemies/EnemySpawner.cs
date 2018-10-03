@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
-    private int m_iEnemyMax = 50;
+    private int m_iEnemyMax = 10;
 
     //  Timers for enemy spawning with max and min delay.
     private float m_fSpawnTimer = 0.0f;
@@ -67,12 +67,15 @@ public class EnemySpawner : MonoBehaviour
                 {
                     //  Level transition.
                     m_iLevel += 1;
+                    m_iWaveNumber = 0;
+                    m_fWaveTimer = m_fWaveDelay;
                 }
                 else
                 {
                     m_bWaveActive = true;
                     m_iWaveNumber += 1;
                     m_iEnemyCount = 0;
+                    Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
                 }
             }
         }
@@ -85,7 +88,9 @@ public class EnemySpawner : MonoBehaviour
     void WaveCompleted()
     {
         Debug.Log("Wave Completed");
-        if (0 == GameObject.FindGameObjectsWithTag("Follower").Length)
+        int EnemyCount = GameObject.FindGameObjectsWithTag("Follower").Length;
+        Debug.Log(EnemyCount);
+        if (0 == EnemyCount)
         {
             m_bWaveActive = false;
             m_fWaveTimer = m_fWaveDelay;
@@ -93,7 +98,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    bool EnemeyIsAlive()
+    bool EnemyIsAlive()
     {
         m_fWaveTimer -= Time.deltaTime;
 
