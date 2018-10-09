@@ -84,6 +84,15 @@ public class TowerEnemeyAI : MonoBehaviour {
        // transform.rotation = targetRotation;
         m_vTarget -= Temp;
 
+        if (gameObject.transform.position != m_vTarget)
+        {
+            Agent.SetDestination(m_vTarget);
+        }
+        else
+        {
+            Agent.isStopped = true;
+        }
+
 
         m_fDelay += Time.deltaTime;
 

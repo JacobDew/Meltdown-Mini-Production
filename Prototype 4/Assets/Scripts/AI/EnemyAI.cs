@@ -78,6 +78,10 @@ public class EnemyAI : MonoBehaviour {
         {
             Agent.SetDestination(m_vTarget);
         }
+        else
+        {
+            Agent.isStopped = true;
+        }
         
 
 

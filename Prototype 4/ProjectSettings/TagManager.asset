@@ -13,6 +13,7 @@ TagManager:
   - Tower
   - TowerHealth
   - Perk
+  - CurrentWave
   layers:
   - Default
   - TransparentFX
