@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject[] m_pEnemyTypes;
 
+
+    private GameObject m_pCurrentWave;
     //  Current Wave.
     private int m_iWaveNumber = 0;
     private int m_iLevel = 1;
@@ -40,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        m_pCurrentWave = GameObject.FindGameObjectWithTag("CurrentWave");
+        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
         m_pEnemyTypes = new GameObject[] { Resources.Load<GameObject>("Enemey"), Resources.Load<GameObject>("TowerEnemey") };
     }
     
@@ -76,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
                     m_iWaveNumber += 1;
                     m_iEnemyCount = 0;
                     Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
+                    m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
                 }
             }
         }
