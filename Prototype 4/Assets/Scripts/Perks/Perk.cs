@@ -56,6 +56,41 @@ public class Perk : MonoBehaviour
         m_fHoverDirection = Random.Range(1.0f, 50.0f);
         m_fHoverVec.y = m_fHoverDirection;
         m_fHoverSpeed = 0.04f;
+
+        //  Load different models depending on perk type.
+        switch (m_iPerk)
+        {
+            case 0:
+                {
+
+                }
+                break;
+            case 1:
+                {
+
+                }
+                break;
+            case 2:
+                {
+
+                }
+                break;
+            case 3:
+                {
+
+                }
+                break;
+            case 4:
+                {
+
+                }
+                break;
+            default:
+                {
+
+                }
+                break;
+        }
     }
 
 }

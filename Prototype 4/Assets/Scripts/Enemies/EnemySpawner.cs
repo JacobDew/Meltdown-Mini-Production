@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class EnemySpawner : MonoBehaviour
     private int m_iWaveNumber = 0;
     private int m_iLevel = 1;
 
-    private const int m_iWaveMaxLv1 = 3;
-    private const int m_iWaveMaxLv2 = 3;
-    private const int m_iWaveMaxLv3 = 3;
+    private const int m_iWaveMaxLv1 = 1;
+    private const int m_iWaveMaxLv2 = 1;
+    private const int m_iWaveMaxLv3 = 1;
 
     private bool m_bWaveActive = false;
 
@@ -31,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
-    private int m_iEnemyMax = 10;
+    private int m_iEnemyMax = 1;
 
     //  Timers for enemy spawning with max and min delay.
     private float m_fSpawnTimer = 0.0f;
@@ -42,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         m_pCurrentWave = GameObject.FindGameObjectWithTag("CurrentWave");
         m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
         m_pEnemyTypes = new GameObject[] { Resources.Load<GameObject>("Enemey"), Resources.Load<GameObject>("TowerEnemey") };
@@ -51,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (true == m_bWaveActive)
         {
-            if (m_iEnemyMax < m_iEnemyCount)
+            if (m_iEnemyMax <= m_iEnemyCount)
             {
                 WaveCompleted();
             }
@@ -71,8 +73,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     //  Level transition.
                     m_iLevel += 1;
-                    m_iWaveNumber = 0;
-                    m_fWaveTimer = m_fWaveDelay;
+                    GoToLevel(m_iLevel);
                 }
                 else
                 {
@@ -175,17 +176,18 @@ public class EnemySpawner : MonoBehaviour
 
     private bool LevelComplete()
     {
+        bool bComplete = false;
         switch (m_iWaveNumber)
         {
             case 1:
                 {
                     if (m_iWaveMaxLv1 > m_iWaveNumber)
                     {
-                        return false;
+                        bComplete = false;
                     }
                     else
                     {
-                        return true;
+                        bComplete = true;
                     }
                 }
                 break;
@@ -193,11 +195,11 @@ public class EnemySpawner : MonoBehaviour
                 {
                     if (m_iWaveMaxLv2 > m_iWaveNumber)
                     {
-                        return false;
+                        bComplete = false;
                     }
                     else
                     {
-                        return true;
+                        bComplete = true;
                     }
                 }
                 break;
@@ -205,23 +207,58 @@ public class EnemySpawner : MonoBehaviour
                 {
                     if (m_iWaveMaxLv3 > m_iWaveNumber)
                     {
-                        return false;
+                        bComplete = false;
                     }
                     else
                     {
-                        return true;
+                        bComplete = true;
                     }
                 }
                 break;
             default:
                 {
                     //  No Level.
-                    return false;
+                    bComplete = false;
                 }
                 break;
         }
+        return bComplete;
     }
 
+    private void GoToLevel(int _Level)
+    {
+        m_iWaveNumber = 0;
+        m_fWaveTimer = m_fWaveDelay;
+        switch (_Level)
+        {
+            case 0:
+                {
+                    SceneManager.LoadScene("Level 2");
+                }
+                break;
+            case 1:
+                {
+                    SceneManager.LoadScene("Level 2");
+                }
+                break;
+            case 2:
+                {
+                    SceneManager.LoadScene("Level 2");
+                }
+                break;
+            case 3:
+                {
+                    SceneManager.LoadScene("Level 3");
+                }
+                break;
+            default:
+                {
+                    SceneManager.LoadScene("Level 2");
+                }
+                break;
+        }
 
+
+    }
 
 }
