@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 65785379596811026}
   - component: {fileID: 114597198822808872}
   - component: {fileID: 195101094889006984}
+  - component: {fileID: 95230175077134848}
   m_Layer: 0
   m_Name: TowerEnemey
   m_TagString: Follower
@@ -122,11 +123,29 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336061990996940}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95230175077134848
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336061990996940}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 2d30ceb0cfae607478a18191c3cb5bf6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 33a8f8e37cd6b694db4c80745d07455d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114597198822808872
 MonoBehaviour:
   m_ObjectHideFlags: 1
