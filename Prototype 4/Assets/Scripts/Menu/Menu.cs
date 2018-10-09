@@ -28,7 +28,7 @@ public class Menu : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void CloseApp()

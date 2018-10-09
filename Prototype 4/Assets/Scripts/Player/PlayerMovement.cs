@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (true == Input.GetKey(KeyCode.Space))
         {
-            SceneManager.LoadScene("Level 2");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
