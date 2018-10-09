@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     private int m_iWaveNumber = 0;
     private int m_iLevel = 1;
 
-    private const int m_iWaveMaxLv1 = 1;
+    private const int m_iWaveMaxLv1 = 10;
     private const int m_iWaveMaxLv2 = 1;
     private const int m_iWaveMaxLv3 = 1;
 
@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
-    private int m_iEnemyMax = 1;
+    private int m_iEnemyMax = 10;
 
     //  Timers for enemy spawning with max and min delay.
     private float m_fSpawnTimer = 0.0f;
