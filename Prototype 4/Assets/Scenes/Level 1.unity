@@ -6182,11 +6182,11 @@ MonoBehaviour:
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 1
-  m_TileSize: 300
+  m_TileSize: 16
   m_OverrideVoxelSize: 1
-  m_VoxelSize: 0.55
+  m_VoxelSize: 0.6
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: ad0b45404c6d1e34f97865b5d9cce861, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1ab9e14ae087f58449311ef934f25764, type: 2}
 --- !u!4 &193020997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 0e5109d22fc7ccf43b5e38ab143c4f34,

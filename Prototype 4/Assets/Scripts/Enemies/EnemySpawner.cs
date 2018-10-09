@@ -20,9 +20,9 @@ public class EnemySpawner : MonoBehaviour
     private int m_iWaveNumber = 0;
     private int m_iLevel = 1;
 
-    private const int m_iWaveMaxLv1 = 10;
-    private const int m_iWaveMaxLv2 = 1;
-    private const int m_iWaveMaxLv3 = 1;
+    private const int m_iWaveMaxLv1 = 2;
+    private const int m_iWaveMaxLv2 = 2;
+    private const int m_iWaveMaxLv3 = 2;
 
     private bool m_bWaveActive = false;
 

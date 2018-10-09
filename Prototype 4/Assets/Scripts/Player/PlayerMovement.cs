@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -115,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
 
+        }
+
+        if (true == Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene("Level 2");
         }
     }
 
