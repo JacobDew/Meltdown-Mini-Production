@@ -30,12 +30,13 @@ public class Player : MonoBehaviour
     private float m_fFireDelay;         //  Delay between shots.
     private float m_fDamage;            //  Damage of the current weapon.
     private int m_iAmmoCount;           //  Number of shots available.
-    private int m_iHits;                //  May be a multi-hit mechanic. Apply extra hits at the cost of pierce?
+    private int m_iMultiHit;                //  May be a multi-hit mechanic. Apply extra hits at the cost of pierce?
     private float m_fProjectileSpeed;   //  Speed of the projectiles.
     private int m_iWeaponPierce;        //  Weapon's number of natural pierces.
-    private int m_iMultishot;           //  Number of projectiles.
+    private int m_iMultiShot;           //  Number of projectiles.
     private int m_iBasePierce;          //  number of enemies the projectile can hit.
 
+    private float m_fSpread;
 
 	// Use this for initialization
 	void Start()
@@ -63,6 +64,9 @@ public class Player : MonoBehaviour
         m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y , m_Player.transform.position.z );
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = 100f;
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
+
+
+        //  Starting weapon.
         SetWeapon(2);
     }
 	
@@ -117,8 +121,9 @@ public class Player : MonoBehaviour
                         }
                         TempObject.transform.position = m_Player.transform.position;
                         TempObject.transform.rotation = m_Player.transform.rotation;
-                        TempObject.GetComponent<ProjectileScript>().Initialize(Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x,
-                            0.0f, HitPos.point.z - m_Player.transform.position.z)), m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultishot);
+                        Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) * 
+                                Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x, 0.0f, HitPos.point.z - m_Player.transform.position.z));
+                        TempObject.GetComponent<ProjectileScript>().Initialize(FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
 
                         //sound effect for bullet
                         FindObjectOfType<AudioManager>().Play("Laser");
@@ -153,27 +158,30 @@ public class Player : MonoBehaviour
                     m_fDamage = 2.6f;
                     m_fProjectileSpeed = 20.0f;
                     m_iWeaponPierce = 0;
-                    m_iMultishot = 0;
+                    m_iMultiShot = 0;
+                    m_fSpread = 0.5f;
                 }
                 break;
             case 1:
                 {
                     m_iAmmoCount = 50;
                     m_fFireDelay = 1.0f;
-                    m_fDamage = 20.0f;
+                    m_fDamage = 13.0f;
                     m_fProjectileSpeed = 50.0f;
                     m_iWeaponPierce = 3;
-                    m_iMultishot = 0;
+                    m_iMultiShot = 0;
+                    m_fSpread = 0.0f;
                 }
                 break;
             case 2:
                 {
                     m_iAmmoCount = 230;
-                    m_fFireDelay = 0.3f;
+                    m_fFireDelay = 0.7f;
                     m_fDamage = 1.4f;
                     m_fProjectileSpeed = 90.0f;
                     m_iWeaponPierce = 0;
-                    m_iMultishot = 10;
+                    m_iMultiShot = 10;
+                    m_fSpread = 0.0f;
                 }
                 break;
             case 3:
@@ -183,15 +191,13 @@ public class Player : MonoBehaviour
                     m_fDamage = 0.85f;
                     m_fProjectileSpeed = 30.0f;
                     m_iWeaponPierce = 0;
-                    m_iMultishot = 0;
+                    m_iMultiShot = 0;
+                    m_fSpread = 5.0f;
                 }
                 break;
             default:
                 {
-                    m_iAmmoCount = 150;
-                    m_fFireDelay = 0.2f;
-                    m_fDamage = 2.6f;
-                    m_fProjectileSpeed = 20.0f;
+                    SetWeapon(0);
                 }
                 break;
         }
@@ -223,12 +229,12 @@ public class Player : MonoBehaviour
                 break;
             case 1:
                 {
-
+                    m_iMultiShot += 1;
                 }
                 break;
             case 2:
                 {
-
+                    m_iMultiHit += 1;
                 }
                 break;
             default:

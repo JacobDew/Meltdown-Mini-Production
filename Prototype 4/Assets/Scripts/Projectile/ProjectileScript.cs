@@ -69,14 +69,13 @@ public class ProjectileScript : MonoBehaviour
                 break;
             default:
                 {
-                    int Rotation = 0 - _Multishot;
+                    float Rotation = (float)(_Multishot) / 1.5f;
                     GameObject TempProjectile;
                     //  Rotate about Y and spawn more.
                     for (int iX = 0; iX < _Multishot; iX++)
                     {
                         TempProjectile = Instantiate(this.gameObject);
-                        TempProjectile.GetComponent<ProjectileScript>().Initialize(Quaternion.Euler(0, Rotation, 0) * _Direction, _Damage, _Speed, _Pierce);
-                        Rotation += 2;
+                        TempProjectile.GetComponent<ProjectileScript>().Initialize(Quaternion.Euler(0, Random.Range(-Rotation, Rotation), 0) * _Direction, _Damage, _Speed, _Pierce);
                     }
                 }
                 break;
