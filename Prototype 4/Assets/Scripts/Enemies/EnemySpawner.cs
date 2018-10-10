@@ -257,8 +257,8 @@ public class EnemySpawner : MonoBehaviour
                 }
                 break;
         }
-
-
+        m_pCurrentWave = GameObject.FindGameObjectWithTag("CurrentWave");
+        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
     }
 
 }
