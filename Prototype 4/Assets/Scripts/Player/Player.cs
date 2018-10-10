@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
 
         //  Starting weapon.
-        SetWeapon(2);
+        SetWeapon(1);
     }
 	
 	// Update is called once per frame
@@ -165,10 +165,10 @@ public class Player : MonoBehaviour
             case 1:
                 {
                     m_iAmmoCount = 50;
-                    m_fFireDelay = 1.0f;
+                    m_fFireDelay = 0.7f;
                     m_fDamage = 13.0f;
                     m_fProjectileSpeed = 50.0f;
-                    m_iWeaponPierce = 3;
+                    m_iWeaponPierce = 2;
                     m_iMultiShot = 0;
                     m_fSpread = 0.0f;
                 }

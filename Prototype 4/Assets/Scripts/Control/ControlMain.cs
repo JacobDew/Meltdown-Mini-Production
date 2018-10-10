@@ -15,7 +15,8 @@ public class ControlMain : MonoBehaviour
 	void Start()
     {
         m_pPlayer = GameObject.FindGameObjectWithTag("Player");
-        m_pWeaponObject = new GameObject[] { Resources.Load<GameObject>("Pistol"), Resources.Load<GameObject>("Sniper"), Resources.Load<GameObject>("Shotgun"), Resources.Load<GameObject>("AssaultRifle") };
+        m_pWeaponObject = new GameObject[] { Resources.Load<GameObject>("Pistol"), Resources.Load<GameObject>("Sniper"), Resources.Load<GameObject>("Shotgun"),
+            Resources.Load<GameObject>("AssaultRifle") };
     }
 
     // Update is called once per frame
