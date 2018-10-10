@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private Vector3 m_vPlaneNormal;
     private int LayerMask = 1 << 13;    //  For the ray-cast, unused or not used effectively.
 
+    private int m_iCurrency;            //  Currency value.
 
     private float m_fHealth;            //  Player Health.
 
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
     private float m_fFireDelay;         //  Delay between shots.
     private float m_fDamage;            //  Damage of the current weapon.
     private int m_iAmmoCount;           //  Number of shots available.
-    private int m_iMultiHit;                //  May be a multi-hit mechanic. Apply extra hits at the cost of pierce?
+    private int m_iMultiHit;            //  May be a multi-hit mechanic. Apply extra hits at the cost of pierce?
     private float m_fProjectileSpeed;   //  Speed of the projectiles.
     private int m_iWeaponPierce;        //  Weapon's number of natural pierces.
     private int m_iMultiShot;           //  Number of projectiles.
@@ -41,6 +42,10 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
+        //  Currency values.
+        m_Player.AddComponent<Currency>();
+        m_iCurrency = 0;
+
         //  Setting pointers.
         m_Player = GameObject.FindGameObjectWithTag("Player");
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
@@ -243,6 +248,12 @@ public class Player : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void AddCurrency(int _Value)
+    {
+        m_iCurrency += _Value;
+        Debug.Log("Current Currency: " + m_iCurrency);
     }
     
 }

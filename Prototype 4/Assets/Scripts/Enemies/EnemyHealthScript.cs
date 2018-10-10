@@ -23,6 +23,7 @@ public class EnemyHealthScript : MonoBehaviour
     public void TakeDamage(float _Damage)
     {
         m_fHealth -= _Damage;
+        m_pPlayer.GetComponent<Player>().AddCurrency(10);
         if (0.0001f > m_fHealth)
         {
             GameObject Temp = Resources.Load<GameObject>("EffectCube");
@@ -36,6 +37,7 @@ public class EnemyHealthScript : MonoBehaviour
                 Temp2.transform.Rotate(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));
                 sX++;
             }
+            m_pPlayer.GetComponent<Player>().AddCurrency(115);
             Destroy(gameObject);
         }
     }

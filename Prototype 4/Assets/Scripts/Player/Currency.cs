@@ -30,10 +30,5 @@ public class Currency : MonoBehaviour
         return true;
     }
 
-    public void AddCurrency(int _Value)
-    {
-
-    }
-
 
 }
