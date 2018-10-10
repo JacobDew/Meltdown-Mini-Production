@@ -2068,6 +2068,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1454098233}
+    - target: {fileID: 1146465469208458, guid: 68fabf143b82e884b84073642a1b3e8d, type: 2}
+      propertyPath: m_Name
+      value: Pause Slider
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68fabf143b82e884b84073642a1b3e8d, type: 2}
   m_IsPrefabAsset: 0

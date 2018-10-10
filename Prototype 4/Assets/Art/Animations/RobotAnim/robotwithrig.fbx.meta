@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2d30ceb0cfae607478a18191c3cb5bf6
+guid: 6d56916d976621e48862c49f752382a2
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -21,8 +21,14 @@ ModelImporter:
     100030: joint7
     100032: joint8
     100034: joint9
-    100036: polySurface2
-    100038: //RootNode
+    100036: pCube29
+    100038: polySurface1
+    100040: polySurface2
+    100042: polySurface2 1
+    100044: //RootNode
+    100046: transform1
+    100048: transform2
+    100050: transform3
     400000: joint1
     400002: joint10
     400004: joint11
@@ -41,11 +47,16 @@ ModelImporter:
     400030: joint7
     400032: joint8
     400034: joint9
-    400036: polySurface2
-    400038: //RootNode
+    400036: pCube29
+    400038: polySurface1
+    400040: polySurface2
+    400042: polySurface2 1
+    400044: //RootNode
+    400046: transform1
+    400048: transform2
+    400050: transform3
     2100000: lambert1
     4300000: polySurface2
-    7400000: RobotRun
     9500000: //RootNode
     13700000: polySurface2
   externalObjects: {}
@@ -66,8 +77,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 1
-    importConstraints: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -75,41 +86,13 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: RobotRun
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 10.9
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 1
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 2.4
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -120,7 +103,7 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
