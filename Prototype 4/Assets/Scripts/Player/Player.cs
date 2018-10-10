@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 	void Start()
     {
         //  Currency values.
-        m_Player.AddComponent<Currency>();
+        //m_Player.AddComponent<Currency>();
         m_iCurrency = 0;
 
         //  Setting pointers.

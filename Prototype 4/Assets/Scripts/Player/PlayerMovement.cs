@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator m_Animator;
+
     private Vector3 m_vUp = new Vector3(0.7071f, 0.0f, 0.7071f);
     private Vector3 m_vDown = new Vector3(-0.7071f, 0.0f, -0.7071f);
     private Vector3 m_vLeft = new Vector3(-0.7071f, 0.0f, 0.7071f);
@@ -24,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        m_Animator = Player.GetComponent<Animator>();
+        m_Animator.SetFloat("Input X", 0.5f);
     }
 
     // Update is called once per frame
@@ -49,73 +52,87 @@ public class PlayerMovement : MonoBehaviour
     {
         if (true == Input.GetKey(KeyCode.D) && true == Input.GetKey(KeyCode.A))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             if (true == Input.GetKey(KeyCode.W))
             {
+                m_Animator.SetFloat("Input", 0.5f);
                 //  Up movement.
                 this.transform.position += m_vUp * playerSpeed * Time.deltaTime;
             }
             else if (true == Input.GetKey(KeyCode.S))
             {
+                m_Animator.SetFloat("Input", 0.5f);
                 //  Down movement.
                 this.transform.position += m_vDown * playerSpeed * Time.deltaTime;
             }
         }
         else if (true == Input.GetKey(KeyCode.W) && true == Input.GetKey(KeyCode.S))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             if (true == Input.GetKey(KeyCode.D))
             {
+                m_Animator.SetFloat("Input", 0.5f);
                 //  Right movement.
                 this.transform.position += m_vRight * playerSpeed * Time.deltaTime;
             }
             else if (true == Input.GetKey(KeyCode.A))
             {
+                m_Animator.SetFloat("Input", 0.5f);
                 //  Left movement.
                 this.transform.position += m_vLeft * playerSpeed * Time.deltaTime;
             }
         }
         else if (true == Input.GetKey(KeyCode.D) && true == Input.GetKey(KeyCode.W))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Up Right movement.
             this.transform.position += m_vUpRight * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.W) && true == Input.GetKey(KeyCode.A))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Up Left movement.
             this.transform.position += m_vUpLeft * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.A) && true == Input.GetKey(KeyCode.S))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Down Left movement.
             this.transform.position += m_vDownLeft * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.S) && true == Input.GetKey(KeyCode.D))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Down Right movement.
             this.transform.position += m_vDownRight * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.D))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Right movement.
             this.transform.position += m_vRight * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.W))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Up movement.
             this.transform.position += m_vUp * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.A))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Left movement.
             this.transform.position += m_vLeft * playerSpeed * Time.deltaTime;
         }
         else if (true == Input.GetKey(KeyCode.S))
         {
+            m_Animator.SetFloat("Input", 0.5f);
             //  Down movement.
             this.transform.position += m_vDown * playerSpeed * Time.deltaTime;
         }
         else
         {
-
+            m_Animator.SetFloat("Input", 0.0f);
         }
 
         if (true == Input.GetKey(KeyCode.Space))
