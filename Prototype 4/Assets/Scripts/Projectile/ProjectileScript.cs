@@ -45,6 +45,8 @@ public class ProjectileScript : MonoBehaviour
             }
             m_iPierce -= 1;
             other.gameObject.GetComponent<EnemyHealthScript>().TakeDamage(m_fDamage);
+            GameObject HitEffect = new GameObject();
+            HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position);
             if (0 > m_iPierce)
             {
                 Destroy(gameObject);
