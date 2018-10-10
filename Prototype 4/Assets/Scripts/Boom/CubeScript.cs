@@ -30,9 +30,9 @@ public class CubeScript : MonoBehaviour
         m_fSpeed *= m_fDecay * 1.0f + Time.deltaTime;
 	}
 
-    public void Initialize(Quaternion _Rotation, int _Material, float _Speed = 20.0f, float _Decay = 0.5f)
+    public void Initialize(Quaternion _Rotation, Vector3 _Direction, int _Material, float _Speed = 40.0f, float _Decay = 0.5f)
     {
-        m_vDirection = new Vector3(0.0f, 1.0f, 0.0f);
+        m_vDirection = _Direction;
         this.transform.rotation = _Rotation;
         m_fSpeed = _Speed;
         m_fDecay = _Decay;

@@ -80,8 +80,11 @@ public class EnemySpawner : MonoBehaviour
                     m_bWaveActive = true;
                     m_iWaveNumber += 1;
                     m_iEnemyCount = 0;
-                    Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
-                    m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
+                    if (null != m_pCurrentWave)
+                    {
+                        Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
+                        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
+                    }
                 }
             }
         }
@@ -110,7 +113,7 @@ public class EnemySpawner : MonoBehaviour
 
         if(m_fWaveTimer < 0.0f)
         {
-            if (GameObject.FindGameObjectsWithTag("Follower").Length == 0)
+            if (0 == GameObject.FindGameObjectsWithTag("Follower").Length)
             {
 
                 return false;
@@ -258,7 +261,10 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
         m_pCurrentWave = GameObject.FindGameObjectWithTag("CurrentWave");
-        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
+        if (null != m_pCurrentWave)
+        {
+            m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
+        }
     }
 
 }
