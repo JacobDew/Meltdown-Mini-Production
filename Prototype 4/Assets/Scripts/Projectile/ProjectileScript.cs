@@ -11,6 +11,7 @@ public class ProjectileScript : MonoBehaviour
     private float m_fSpeed;
     private float m_fDamage;
     private int m_iPierce;
+    private int m_iType;
 
 
     // Use this for initialization
@@ -46,7 +47,7 @@ public class ProjectileScript : MonoBehaviour
             m_iPierce -= 1;
             other.gameObject.GetComponent<EnemyHealthScript>().TakeDamage(m_fDamage);
             GameObject HitEffect = new GameObject();
-            HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position);
+            HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, m_iType);
             if (0 > m_iPierce)
             {
                 Destroy(gameObject);
@@ -55,8 +56,9 @@ public class ProjectileScript : MonoBehaviour
         }
     }
 
-    public void Initialize(Vector3 _Direction, float _Damage, float _Speed, int _Pierce, int _Multishot = 0)
+    public void Initialize(int _Type, Vector3 _Direction, float _Damage, float _Speed, int _Pierce, int _Multishot = 0)
     {
+        m_iType = _Type;
         this.transform.position += _Direction;
         m_vDirection = _Direction;
         m_fDamage = _Damage;
@@ -77,7 +79,7 @@ public class ProjectileScript : MonoBehaviour
                     for (int iX = 0; iX < _Multishot; iX++)
                     {
                         TempProjectile = Instantiate(this.gameObject);
-                        TempProjectile.GetComponent<ProjectileScript>().Initialize(Quaternion.Euler(0, Random.Range(-Rotation, Rotation), 0) * _Direction, _Damage, _Speed, _Pierce);
+                        TempProjectile.GetComponent<ProjectileScript>().Initialize(m_iType, Quaternion.Euler(0, Random.Range(-Rotation, Rotation), 0) * _Direction, _Damage, _Speed, _Pierce);
                     }
                 }
                 break;

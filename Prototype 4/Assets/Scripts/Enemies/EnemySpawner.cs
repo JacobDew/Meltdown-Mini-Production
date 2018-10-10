@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
-    private int m_iEnemyMax = 10;
+    private int m_iEnemyMax = 100;
 
     //  Timers for enemy spawning with max and min delay.
     private float m_fSpawnTimer = 0.0f;

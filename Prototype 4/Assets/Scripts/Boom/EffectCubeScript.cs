@@ -6,6 +6,8 @@ public class EffectCubeScript : MonoBehaviour
 {
     private Vector3 m_vThisPos;
     private GameObject m_pEffectCube;
+    private int m_iMaterial;
+
 
     private int m_iMultiplier;
     private float m_fDelay;
@@ -31,7 +33,7 @@ public class EffectCubeScript : MonoBehaviour
                 for (int iX = 0; iX < m_iMultiplier; iX++)
                 {
                     GameObject TempPtr = Instantiate(m_pEffectCube);
-                    TempPtr.AddComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
+                    TempPtr.AddComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)), m_iMaterial);
                     TempPtr.transform.position = m_vThisPos;
                     //TempPtr.GetComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
                 }
@@ -46,9 +48,10 @@ public class EffectCubeScript : MonoBehaviour
         m_fTime += Time.deltaTime;
     }
 
-    public void Initialize(Vector3 _Position, float _Lifetime = 0.3f, float _Delay = 0.01f, int _Multiplier = 5)
+    public void Initialize(Vector3 _Position, int _Material, float _Lifetime = 0.1f, float _Delay = 0.01f, int _Multiplier = 3)
     {
         m_fTime = 0.0f;
+        m_iMaterial = _Material;
         m_fLifetime = _Lifetime;
         m_fDelay = _Delay;
         m_iMultiplier = _Multiplier;

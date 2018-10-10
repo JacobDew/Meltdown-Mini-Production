@@ -25,13 +25,14 @@ public class EnemyHealthScript : MonoBehaviour
         m_fHealth -= _Damage;
         if (0.0001f > m_fHealth)
         {
-            GameObject Temp = Resources.Load<GameObject>("X");
+            GameObject Temp = Resources.Load<GameObject>("EffectCube");
             Vector3 vTemp = this.transform.position;
             short sX = 0;
-            while (6 > sX)
+            while (15 > sX)
             {
                 GameObject Temp2 = Instantiate(Temp);
-                Temp2.transform.position = this.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), 1.0f, Random.Range(-0.3f, 0.3f));
+                Temp2.AddComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
+                Temp2.transform.position = this.transform.position + new Vector3(Random.Range(-1.5f, 1.5f), 0.4f, Random.Range(-1.5f, 1.5f));
                 Temp2.transform.Rotate(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));
                 sX++;
             }

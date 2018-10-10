@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
 
         //  Starting weapon.
-        SetWeapon(1);
+        SetWeapon(2);
     }
 	
 	// Update is called once per frame
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
                         TempObject.transform.rotation = m_Player.transform.rotation;
                         Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) * 
                                 Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x, 0.0f, HitPos.point.z - m_Player.transform.position.z));
-                        TempObject.GetComponent<ProjectileScript>().Initialize(FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
+                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
 
                         //sound effect for bullet
                         FindObjectOfType<AudioManager>().Play("Laser");
