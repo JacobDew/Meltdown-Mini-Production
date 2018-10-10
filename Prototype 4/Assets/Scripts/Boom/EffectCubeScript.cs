@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectCubeScript : MonoBehaviour
 {
     private Vector3 m_vThisPos;
+    private Vector3 m_vDirection;
     private GameObject m_pEffectCube;
     private int m_iMaterial;
 
@@ -33,7 +34,8 @@ public class EffectCubeScript : MonoBehaviour
                 for (int iX = 0; iX < m_iMultiplier; iX++)
                 {
                     GameObject TempPtr = Instantiate(m_pEffectCube);
-                    TempPtr.AddComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)), m_iMaterial);
+                    TempPtr.AddComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(-45.0f, 45.0f), Random.Range(-45.0f, 45.0f), Random.Range(-45.0f, 45.0f)),
+                         m_vDirection, m_iMaterial);
                     TempPtr.transform.position = m_vThisPos;
                     //TempPtr.GetComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
                 }
@@ -48,7 +50,7 @@ public class EffectCubeScript : MonoBehaviour
         m_fTime += Time.deltaTime;
     }
 
-    public void Initialize(Vector3 _Position, int _Material, float _Lifetime = 0.1f, float _Delay = 0.01f, int _Multiplier = 3)
+    public void Initialize(Vector3 _Position, Vector3 _Direction, int _Material, float _Lifetime = 0.2f, float _Delay = 0.01f, int _Multiplier = 3)
     {
         m_fTime = 0.0f;
         m_iMaterial = _Material;
@@ -56,6 +58,7 @@ public class EffectCubeScript : MonoBehaviour
         m_fDelay = _Delay;
         m_iMultiplier = _Multiplier;
         m_vThisPos = _Position;
+        m_vDirection = _Direction;
         m_pEffectCube = Resources.Load<GameObject>("EffectCube");
     }
 }

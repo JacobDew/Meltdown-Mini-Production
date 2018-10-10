@@ -25,14 +25,18 @@ public class AIBehaviour : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        if (0.0f > m_fDamageDelay)
+        if (0.0f > m_fDamageDelay && null != m_Player)
         {
             if (1.5f > Vector3.Distance(this.transform.position, m_Player.transform.position))
             {
                 m_Player.GetComponent<Player>().TakeDamage(m_fDamage);
                 m_fDamageDelay = 1.0f;
             }
+            m_fDamageDelay -= Time.deltaTime;
         }
-        m_fDamageDelay -= Time.deltaTime;
+        else
+        {
+            m_Player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 }

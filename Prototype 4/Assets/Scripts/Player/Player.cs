@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 	void Start()
     {
         //  Currency values.
-        m_Player.AddComponent<Currency>();
+        //  m_Player.AddComponent<Currency>();
         m_iCurrency = 0;
 
         //  Setting pointers.
@@ -78,6 +78,10 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        if (null == m_pHealth)
+        {
+            m_pHealth = GameObject.FindGameObjectWithTag("Health");
+        }
         //Updates posistion and value of Player healthBar
         m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y + 2.0f, m_Player.transform.position.z);
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fHealth;
