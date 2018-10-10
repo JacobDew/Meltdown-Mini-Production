@@ -16,7 +16,7 @@ public class TowerHealth : MonoBehaviour
     {
         m_pHealthDisplay = GameObject.FindGameObjectWithTag("TowerHealth");
         m_fTowerHealth = 2000.0f;
-        m_pHealthDisplay.GetComponent<Slider>().value = m_fTowerHealth;
+
         m_pHealthDisplay.transform.position = new Vector3(-4.5312f, 10.9f, 17.9f);
         m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = m_fTowerHealth;
         m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;

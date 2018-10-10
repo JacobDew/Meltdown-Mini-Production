@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 14507355}
   - component: {fileID: 14507357}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Pause Slider
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,7 +788,6 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  Slider: {fileID: 0}
 --- !u!1 &594715166
 GameObject:
   m_ObjectHideFlags: 0
