@@ -27,14 +27,18 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Slider = GameObject.Find("Slider");
+        Slider = GameObject.Find("Pause Slider");
+
 
         DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
+
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
+
+            Slider.GetComponent<Slider>().value = s.source.volume;
 
             s.source.volume = Slider.GetComponent<Slider>().value;
             s.source.pitch = s.pitch;
@@ -55,7 +59,7 @@ public class AudioManager : MonoBehaviour
         {
             if(Slider == null)
             {
-                Slider = GameObject.Find("Slider");
+                Slider = GameObject.Find("Pause Slider");
                 Slider.GetComponent<Slider>().value = s.source.volume;
 
             }

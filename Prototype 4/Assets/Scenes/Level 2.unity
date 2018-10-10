@@ -2144,6 +2144,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1454098233}
+    - target: {fileID: 1146465469208458, guid: 68fabf143b82e884b84073642a1b3e8d, type: 2}
+      propertyPath: m_Name
+      value: Pause Slider
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68fabf143b82e884b84073642a1b3e8d, type: 2}
   m_IsPrefabAsset: 0
@@ -3063,7 +3067,7 @@ GameObject:
   - component: {fileID: 779559972}
   m_Layer: 5
   m_Name: Current Wave
-  m_TagString: Untagged
+  m_TagString: CurrentWave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
