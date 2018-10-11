@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         m_Animator = Player.GetComponent<Animator>();
-        m_Animator.SetFloat("Input X", 0.5f);
     }
 
     // Update is called once per frame
