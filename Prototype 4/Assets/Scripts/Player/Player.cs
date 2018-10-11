@@ -78,72 +78,13 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        //  Check input.
+        ProcessInput();
+
         //Updates posistion and value of Player healthBar
         m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y + 2.0f, m_Player.transform.position.z);
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fHealth;
-        if (Input.GetMouseButton(0))
-		{
-            if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
-            {
-                m_iAmmoCount -= 1;
-                RaycastHit HitPos;
-                Ray Temp = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.Log(m_iAmmoCount);
-                m_fLastShot = m_fFireDelay;
-                if (Physics.Raycast(Temp.origin, Temp.direction, out HitPos, LayerMask))
-                {
-                    if (null != HitPos.point)
-                    {
-                        Debug.Log(HitPos.point);
-                        GameObject TempObject;
-                        switch (m_iWeapon)
-                        {
-                            case 0:
-                                {
-                                    TempObject = Instantiate(m_pCube0);
-                                }
-                                break;
-                            case 1:
-                                {
-                                    TempObject = Instantiate(m_pCube1);
-                                }
-                                break;
-                            case 2:
-                                {
-                                    TempObject = Instantiate(m_pCube2);
-                                }
-                                break;
-                            case 3:
-                                {
-                                    TempObject = Instantiate(m_pCube3);
-                                }
-                                break;
-                            default:
-                                {
-                                     TempObject = Instantiate(m_pCube0);
-                                }
-                                break;
-                        }
-                        TempObject.transform.position = m_Player.transform.position;
-                        TempObject.transform.rotation = m_Player.transform.rotation;
-                        Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) * 
-                                Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x, 0.0f, HitPos.point.z - m_Player.transform.position.z));
-                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
-
-                    }
-                }
-            }
-        }
         
-		if (Input.GetMouseButton(1))
-        {
-
-		}
-
-		if (Input.GetMouseButton(2))
-		{
-
-		}
 
         m_fLastShot -= Time.deltaTime;
        
@@ -254,4 +195,75 @@ public class Player : MonoBehaviour
         Debug.Log("Current Currency: " + m_iCurrency);
     }
     
+    private void ProcessInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
+            {
+                m_iAmmoCount -= 1;
+                RaycastHit HitPos;
+                Ray Temp = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.Log(m_iAmmoCount);
+                m_fLastShot = m_fFireDelay;
+                if (Physics.Raycast(Temp.origin, Temp.direction, out HitPos, LayerMask))
+                {
+                    if (null != HitPos.point)
+                    {
+                        Debug.Log(HitPos.point);
+                        GameObject TempObject;
+                        switch (m_iWeapon)
+                        {
+                            case 0:
+                                {
+                                    TempObject = Instantiate(m_pCube0);
+                                }
+                                break;
+                            case 1:
+                                {
+                                    TempObject = Instantiate(m_pCube1);
+                                }
+                                break;
+                            case 2:
+                                {
+                                    TempObject = Instantiate(m_pCube2);
+                                }
+                                break;
+                            case 3:
+                                {
+                                    TempObject = Instantiate(m_pCube3);
+                                }
+                                break;
+                            default:
+                                {
+                                    TempObject = Instantiate(m_pCube0);
+                                }
+                                break;
+                        }
+                        TempObject.transform.position = m_Player.transform.position;
+                        TempObject.transform.rotation = m_Player.transform.rotation;
+                        Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) *
+                                Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x, 0.0f, HitPos.point.z - m_Player.transform.position.z));
+                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
+
+                    }
+                }
+            }
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+
+        }
+
+        if (Input.GetMouseButton(2))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameObject.FindGameObjectWithTag("Shop").GetComponent<Currency>().Purchase(Random.Range(0, 2), m_iCurrency);
+        }
+    }
 }
