@@ -37,12 +37,14 @@ public class Perk : MonoBehaviour
             m_fHoverVec.y = -m_fHoverDirection;
         }
         this.transform.Translate(m_fHoverVec * m_fHoverSpeed * Time.deltaTime);
+    }
 
-        //  Check distance to player, add perk if so.
-        if (2.0f > Vector3.Distance(this.transform.position, m_pPlayer.transform.position))
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
         {
             m_pPlayer.GetComponent<Player>().AddPerk(m_iPerk);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
