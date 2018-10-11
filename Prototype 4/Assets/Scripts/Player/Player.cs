@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
     
     private void ProcessInput()
     {
-        if (Input.GetMouseButton(0))
+        if (true == Input.GetMouseButton(0))
         {
             if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
             {
@@ -251,19 +251,23 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(1))
+        if (true == Input.GetMouseButton(1))
         {
 
         }
 
-        if (Input.GetMouseButton(2))
+        if (true == Input.GetMouseButton(2))
         {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (true == Input.GetKeyDown(KeyCode.R))
         {
-            GameObject.FindGameObjectWithTag("Shop").GetComponent<Currency>().Purchase(Random.Range(0, 2), m_iCurrency);
+            Debug.Log("BuyKey");
+            if (null != GameObject.FindGameObjectWithTag("Shop"))
+            {
+                GameObject.FindGameObjectWithTag("Shop").GetComponent<Currency>().Purchase(Random.Range(0, 2), m_iCurrency);
+            }
         }
     }
 }

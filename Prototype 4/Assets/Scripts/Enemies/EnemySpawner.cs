@@ -96,14 +96,21 @@ public class EnemySpawner : MonoBehaviour
 
     void WaveCompleted()
     {
-        Debug.Log("Wave Completed");
-        int EnemyCount = GameObject.FindGameObjectsWithTag("Follower").Length;
-        Debug.Log(EnemyCount);
-        if (0 == EnemyCount)
+        if (null != GameObject.FindGameObjectWithTag("Player"))
         {
-            m_bWaveActive = false;
-            m_fWaveTimer = m_fWaveDelay;
-            //  Start Wave_Change Text animation.
+            Debug.Log("Wave Completed");
+            int EnemyCount = GameObject.FindGameObjectsWithTag("Follower").Length;
+            Debug.Log(EnemyCount);
+            if (0 == EnemyCount)
+            {
+                m_bWaveActive = false;
+                m_fWaveTimer = m_fWaveDelay;
+                //  Start Wave_Change Text animation.
+            }
+        }
+        else
+        {
+            return;
         }
     }
 
