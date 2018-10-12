@@ -181,6 +181,7 @@ public class EnemySpawner : MonoBehaviour
             }
             GameObject Temp = Instantiate(m_pEnemyTypes[Random.Range(0, 2)]);
             Temp.transform.position = vSpawnPosition;
+            Temp.tag = "Follower";
             m_iEnemyCount += 1;
         }
         m_fSpawnTimer -= Time.deltaTime;
