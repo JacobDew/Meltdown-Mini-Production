@@ -27,10 +27,10 @@ public class Player : MonoBehaviour
 
     private float m_fLastShot;          //  Works with fire-delay.
 
-    private int m_iWeapon;              //  Current Weapon.
+    public int m_iWeapon;              //  Current Weapon.
     private float m_fFireDelay;         //  Delay between shots.
     private float m_fDamage;            //  Damage of the current weapon.
-    private int m_iAmmoCount;           //  Number of shots available.
+    public int m_iAmmoCount;           //  Number of shots available.
     private int m_iMultiHit;            //  May be a multi-hit mechanic. Apply extra hits at the cost of pierce?
     private float m_fProjectileSpeed;   //  Speed of the projectiles.
     private int m_iWeaponPierce;        //  Weapon's number of natural pierces.
