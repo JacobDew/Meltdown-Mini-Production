@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         ProcessInput();
 
         //Updates posistion and value of Player healthBar
-        m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y + 2.0f, m_Player.transform.position.z);
+        m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y + 5.35f, m_Player.transform.position.z);
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fHealth;
         
 

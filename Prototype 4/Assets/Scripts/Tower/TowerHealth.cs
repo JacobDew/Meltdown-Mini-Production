@@ -39,11 +39,5 @@ public class TowerHealth : MonoBehaviour
         m_pHealthDisplay.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fTowerHealth;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Follower")
-        {
-            TakeDamage(10.0f);
-        }
-    }
+
 }
