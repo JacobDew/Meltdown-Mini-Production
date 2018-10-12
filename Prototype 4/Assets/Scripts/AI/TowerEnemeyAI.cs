@@ -67,7 +67,7 @@ public class TowerEnemeyAI : MonoBehaviour
                     m_fDamageDelay = 1.0f;
                 }
             }
-            m_vTarget = m_pTower.transform.position - this.transform.position;
+            m_vTarget = new Vector3( m_pTower.transform.position.x, m_pTower.transform.position.y, m_pTower.transform.position.z + 10.0f ) - this.transform.position;
             m_fDistance = Vector3.Magnitude(m_vTarget);
             if (20.0f > m_fDistance)
             {
