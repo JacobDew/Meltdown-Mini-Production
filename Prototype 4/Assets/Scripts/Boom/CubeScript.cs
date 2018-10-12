@@ -7,6 +7,10 @@ public class CubeScript : MonoBehaviour
     private Vector3 m_vDirection;
     private float m_fSpeed;
     private float m_fDecay;
+    private int m_iMode = 0;
+    private float m_fLifetime;
+
+    private float m_fDeltaTime = 0.0f;
 
 
     // Use this for initialization
@@ -14,20 +18,41 @@ public class CubeScript : MonoBehaviour
     {
 		
 	}
-	
-	// Update is called once per frame
-	void Update()
+
+    // Update is called once per frame
+    void Update()
     {
-		if (0.01f < m_fSpeed)
+        m_fDeltaTime = Time.deltaTime;
+        switch (m_iMode)
         {
-            this.transform.Translate(m_vDirection * m_fSpeed * Time.deltaTime);
-            this.transform.localScale *= 1.0f - Time.deltaTime;
+            case 0:
+                {
+                    this.transform.Translate(m_vDirection * m_fSpeed * m_fDeltaTime);
+                    this.transform.localScale *= 1.0f - m_fDeltaTime;
+                    if (0.01f > m_fSpeed)
+                    {
+                        Destroy(gameObject);
+                    }
+                    m_fSpeed *= m_fDecay * 1.0f + m_fDeltaTime;
+                }
+                break;
+            case 1:
+                {
+                    this.transform.Translate(m_vDirection * m_fSpeed * m_fDeltaTime);
+                    this.transform.localScale *= 1.0f + m_fDecay * m_fDeltaTime;
+                    m_fLifetime -= m_fDeltaTime;
+                    if (0.0001f > m_fLifetime)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+                break;
+            default:
+                {
+
+                }
+                break;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-        m_fSpeed *= m_fDecay * 1.0f + Time.deltaTime;
 	}
 
     public void Initialize(Quaternion _Rotation, Vector3 _Direction, int _Material, float _Speed = 40.0f, float _Decay = 0.5f)
@@ -68,6 +93,15 @@ public class CubeScript : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void Initialize(Vector3 _Direction, float _Speed = 40.0f, float _Decay = 0.5f, int _Mode = 0, float _Lifetime = 2.0f)
+    {
+        m_vDirection = _Direction;
+        m_fSpeed = _Speed;
+        m_fDecay = _Decay;
+        m_iMode = _Mode;
+        m_fLifetime = _Lifetime;
     }
 
     public void Initialize(Quaternion _Rotation)

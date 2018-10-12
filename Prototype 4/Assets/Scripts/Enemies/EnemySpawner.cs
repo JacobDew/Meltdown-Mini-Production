@@ -16,7 +16,10 @@ public class EnemySpawner : MonoBehaviour
 
 
     private GameObject m_pCurrentWave;
+
     //  Current Wave.
+    private float m_f60 = 0.0f;
+
     private int m_iWaveNumber = 0;
     private int m_iLevel = 1;
 
@@ -32,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
-    private int m_iEnemyMax = 100;
+    private int m_iEnemyMax = 30;
 
     //  Timers for enemy spawning with max and min delay.
     private float m_fSpawnTimer = 0.0f;
@@ -51,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
+        m_f60 = 0.0167f / Time.deltaTime;
         if (true == m_bWaveActive)
         {
             if (m_iEnemyMax <= m_iEnemyCount)
@@ -66,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
         else if (0.0f < m_fWaveTimer)
         {
             m_fWaveTimer -= Time.deltaTime;
-            Debug.Log(m_fWaveTimer);
+            //Debug.Log(m_fWaveTimer);
             if (0.0f > m_fWaveTimer)
             {
                 if (true == LevelComplete())
@@ -82,7 +86,7 @@ public class EnemySpawner : MonoBehaviour
                     m_iEnemyCount = 0;
                     if (null != m_pCurrentWave)
                     {
-                        Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
+                        //Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
                         m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
                     }
                 }
@@ -92,16 +96,14 @@ public class EnemySpawner : MonoBehaviour
         {
 
         }
+        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_f60.ToString();
     }
 
     void WaveCompleted()
     {
         if (null != GameObject.FindGameObjectWithTag("Player"))
         {
-            Debug.Log("Wave Completed");
-            int EnemyCount = GameObject.FindGameObjectsWithTag("Follower").Length;
-            Debug.Log(EnemyCount);
-            if (0 == EnemyCount)
+            if (0 == GameObject.FindGameObjectsWithTag("Follower").Length)
             {
                 m_bWaveActive = false;
                 m_fWaveTimer = m_fWaveDelay;
