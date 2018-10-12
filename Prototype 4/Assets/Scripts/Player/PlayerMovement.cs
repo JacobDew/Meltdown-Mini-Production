@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Plane playerPlane;
     public Transform Player;
+    public Transform PlayerTopHalf;
     public Ray ray;
     public float playerSpeed;
 
@@ -39,10 +40,11 @@ public class PlayerMovement : MonoBehaviour
         if (playerPlane.Raycast(ray, out hitdist))
         {
             Vector3 targetPoint = ray.GetPoint(hitdist);
-            Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(targetPoint - PlayerTopHalf.transform.position);
 
-            transform.rotation = targetRotation;
-            
+            PlayerTopHalf.transform.transform.rotation = targetRotation;
+           // Player.transform.rotation = targetRotation;
+
         }
         Movement();
     }
