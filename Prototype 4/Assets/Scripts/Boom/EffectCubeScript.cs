@@ -17,6 +17,8 @@ public class EffectCubeScript : MonoBehaviour
     private float m_fLifetime;
     private float m_fTime;
 
+    private float m_fDeltaTime = 0.0f;
+
 
 	// Use this for initialization
 	void Start()
@@ -27,6 +29,8 @@ public class EffectCubeScript : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        m_fDeltaTime = Time.deltaTime;
+
         if (m_fLifetime > m_fTime)
         {
             if (m_fDelay < m_fDelayTimer)
@@ -46,8 +50,9 @@ public class EffectCubeScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        m_fDelayTimer += Time.deltaTime;
-        m_fTime += Time.deltaTime;
+
+        m_fDelayTimer += m_fDeltaTime;
+        m_fTime += m_fDeltaTime;
     }
 
     public void Initialize(Vector3 _Position, Vector3 _Direction, int _Material, float _Lifetime = 0.2f, float _Delay = 0.01f, int _Multiplier = 3)

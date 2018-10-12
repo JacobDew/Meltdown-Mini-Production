@@ -8,6 +8,8 @@ public class EnemyHealthScript : MonoBehaviour
 
     private float m_fHealth = 2.0f;
 
+    private bool m_bDead = false;
+
     // Use this for initialization
     void Start()
     {
@@ -38,7 +40,11 @@ public class EnemyHealthScript : MonoBehaviour
                 Temp2.transform.Rotate(new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360)));
                 sX++;
             }
-            m_pPlayer.GetComponent<Player>().AddCurrency(55);
+            if (false == m_bDead)
+            {
+                m_pPlayer.GetComponent<Player>().AddCurrency(55);
+                m_bDead = true;
+            }
             Destroy(gameObject);
         }
     }
