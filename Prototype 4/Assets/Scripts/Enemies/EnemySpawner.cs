@@ -96,7 +96,7 @@ public class EnemySpawner : MonoBehaviour
         {
 
         }
-        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_f60.ToString();
+       // m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_f60.ToString();
     }
 
     void WaveCompleted()
