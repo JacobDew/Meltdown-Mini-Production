@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour {
     private GameObject m_ShotgunSprite;
     private GameObject m_SniperSprite;
     private GameObject m_PistolSprite;
+    private GameObject m_MachineGunSprite;
 
     private GameObject m_AmnoCounter;
 
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour {
         m_ShotgunSprite = GameObject.Find("Shotgun");
         m_SniperSprite = GameObject.Find("Sniper");
         m_PistolSprite = GameObject.Find("Pistol");
+        m_MachineGunSprite = GameObject.Find("Machine Gun");
         m_AmnoCounter = GameObject.Find("Current Ammo");
 
         HUDCheck();
@@ -93,6 +95,7 @@ public class PauseMenu : MonoBehaviour {
                     m_PistolSprite.SetActive(true);
                     m_ShotgunSprite.SetActive(false);
                     m_SniperSprite.SetActive(false);
+                    m_MachineGunSprite.SetActive(false);
                 }
                 break;
                 //Sniper
@@ -101,6 +104,7 @@ public class PauseMenu : MonoBehaviour {
                     m_PistolSprite.SetActive(false);
                     m_ShotgunSprite.SetActive(false);
                     m_SniperSprite.SetActive(true);
+                    m_MachineGunSprite.SetActive(false);
                 }
                 break;
                 //shotgun
@@ -109,12 +113,16 @@ public class PauseMenu : MonoBehaviour {
                     m_PistolSprite.SetActive(false);
                     m_ShotgunSprite.SetActive(true);
                     m_SniperSprite.SetActive(false);
+                    m_MachineGunSprite.SetActive(false);
                 }
                 break;
                 //mechine gun
             case 3:
                 {
-                    
+                    m_PistolSprite.SetActive(false);
+                    m_ShotgunSprite.SetActive(false);
+                    m_SniperSprite.SetActive(false);
+                    m_MachineGunSprite.SetActive(true);
                 }
                 break;
             default:
@@ -125,7 +133,7 @@ public class PauseMenu : MonoBehaviour {
         }
 
 
-        m_AmnoCounter.GetComponent<Text>().text = "Ammo: " + m_Player.GetComponent<Player>().m_iAmmoCount.ToString();
+        m_AmnoCounter.GetComponent<Text>().text =  m_Player.GetComponent<Player>().m_iAmmoCount.ToString();
 
 
     }
