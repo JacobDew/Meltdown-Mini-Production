@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Eksi Perfeksi
   productName: Meltdown
   defaultCursor: {fileID: 2800000, guid: c4fb800be64e132459f38053c67b8daf, type: 3}
   cursorHotspot: {x: 45.5, y: 45.5}
@@ -259,7 +259,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: afd9455ab6ea48b4487e65dd6afdd7b1, type: 3}
+      m_Icon: {fileID: 2800000, guid: 45f3aa0f81008774c81a1274105a0ed9, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
