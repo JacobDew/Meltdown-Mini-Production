@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
 
         //  Starting weapon.
-        SetWeapon(2);
+        SetWeapon(0);
     }
 	
 	// Update is called once per frame
@@ -263,10 +263,13 @@ public class Player : MonoBehaviour
 
         if (true == Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("BuyKey");
-            if (null != GameObject.FindGameObjectWithTag("Shop"))
+            if (null == GameObject.FindGameObjectWithTag("Shop"))
             {
-                GameObject.FindGameObjectWithTag("Shop").GetComponent<Currency>().Purchase(Random.Range(0, 2), m_iCurrency);
+                int Purchase = 0;
+                if (true == this.GetComponent<Currency>().RawPurchase(Purchase, m_iCurrency))
+                {
+                    AddPerk(Purchase);
+                }
             }
         }
     }

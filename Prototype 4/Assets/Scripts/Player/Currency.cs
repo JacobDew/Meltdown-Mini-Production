@@ -23,7 +23,10 @@ public class Currency : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		
+		if (null == m_pStore)
+        {
+            m_pStore = GameObject.FindGameObjectWithTag("Shop");
+        }
 	}
 
     public bool InStore(Vector3 _Position)
@@ -68,9 +71,33 @@ public class Currency : MonoBehaviour
         return false;
     }
 
+    public bool RawPurchase(int _Type, int _Currency)
+    {
+        if (-1 < _Type && m_iPrice.Length > _Type)
+        {
+            if (m_iPrice[_Type] < _Currency)
+            {
+                Debug.Log("Purchase Success");
+                return true;
+            }
+            else
+            {
+                Debug.Log("Failed: Poor");
+                return false;
+            }
+        }
+        else
+        {
+            Debug.Log("Failed: Out of range");
+            return false;
+        }
+
+        return false;
+    }
+
     private void LoadWares()
     {
         m_pWares = new GameObject[] { Resources.Load<GameObject>("Perk") };
-        m_iPrice = new int[] { };
+        m_iPrice = new int[] { 1, 1, 1 };
     }
 }
