@@ -7,7 +7,7 @@ public class Currency : MonoBehaviour
 {
     private GameObject m_pStore;
 
-    private float m_fRadius = 0.0f;
+    private float m_fRadius = 5.0f;
 
     private GameObject[] m_pWares;
 
@@ -33,7 +33,7 @@ public class Currency : MonoBehaviour
     {
         if (null != m_pStore)
         {
-            if ( m_fRadius > Vector3.Distance(m_pStore.transform.position, _Position))
+            if (m_fRadius > Vector3.Distance(m_pStore.transform.position, _Position))
             {
                 return true;
             }

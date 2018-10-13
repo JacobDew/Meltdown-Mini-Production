@@ -263,10 +263,11 @@ public class Player : MonoBehaviour
 
         if (true == Input.GetKeyDown(KeyCode.R))
         {
-            if (null == GameObject.FindGameObjectWithTag("Shop"))
+            if (null != GameObject.FindGameObjectWithTag("Shop"))
             {
-                int Purchase = 0;
-                if (true == this.GetComponent<Currency>().RawPurchase(Purchase, m_iCurrency))
+                int Purchase = 1;
+                if (true == this.GetComponent<Currency>().InStore(this.transform.position)
+                     && true == this.GetComponent<Currency>().RawPurchase(Purchase, m_iCurrency))
                 {
                     AddPerk(Purchase);
                 }
