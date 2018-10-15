@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "Level 3")
         {
-            Play("Level 3");
+            Play("Boss Level");
         }
 
     }
