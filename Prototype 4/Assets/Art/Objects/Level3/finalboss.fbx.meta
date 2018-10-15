@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: c2e0c07d237c94647a55dc5aa0794d6b
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: pCone3
+    100004: pCone4
+    100006: pCone5
+    100008: pCube12
+    100010: pCube14
+    100012: pCylinder19
+    100014: pCylinder20
+    100016: pCylinder21
+    100018: pCylinder22
+    100020: pCylinder23
+    100022: pCylinder24
+    100024: pCylinder25
+    100026: pCylinder26
+    100028: pCylinder27
+    100030: pCylinder28
+    100032: pCylinder29
+    100034: pCylinder30
+    100036: polySurface1
+    100038: polySurface14
+    100040: polySurface14 1
+    100042: polySurface15
+    100044: polySurface16
+    100046: polySurface17
+    100048: polySurface18
+    100050: polySurface19
+    100052: polySurface2
+    100054: polySurface2 1
+    100056: polySurface20
+    100058: polySurface21
+    100060: polySurface22
+    100062: polySurface23
+    100064: polySurface24
+    100066: polySurface4
+    100068: pPlane2
+    100070: pSphere10
+    100072: pSphere18
+    100074: pSphere19
+    100076: pSphere20
+    100078: pSphere7
+    100080: pSphere9
+    100082: transform10
+    100084: transform11
+    100086: transform12
+    100088: transform13
+    100090: transform14
+    100092: transform15
+    100094: transform16
+    100096: transform17
+    100098: transform18
+    100100: transform19
+    100102: transform20
+    100104: transform21
+    100106: transform22
+    100108: transform23
+    100110: transform24
+    100112: transform25
+    100114: transform26
+    100116: transform27
+    100118: transform28
+    100120: transform29
+    100122: transform3
+    100124: transform30
+    100126: transform31
+    100128: transform32
+    100130: transform33
+    100132: transform34
+    100134: transform35
+    100136: transform36
+    100138: transform4
+    100140: transform5
+    100142: transform6
+    100144: transform7
+    100146: transform8
+    100148: transform9
+    400000: //RootNode
+    400002: pCone3
+    400004: pCone4
+    400006: pCone5
+    400008: pCube12
+    400010: pCube14
+    400012: pCylinder19
+    400014: pCylinder20
+    400016: pCylinder21
+    400018: pCylinder22
+    400020: pCylinder23
+    400022: pCylinder24
+    400024: pCylinder25
+    400026: pCylinder26
+    400028: pCylinder27
+    400030: pCylinder28
+    400032: pCylinder29
+    400034: pCylinder30
+    400036: polySurface1
+    400038: polySurface14
+    400040: polySurface14 1
+    400042: polySurface15
+    400044: polySurface16
+    400046: polySurface17
+    400048: polySurface18
+    400050: polySurface19
+    400052: polySurface2
+    400054: polySurface2 1
+    400056: polySurface20
+    400058: polySurface21
+    400060: polySurface22
+    400062: polySurface23
+    400064: polySurface24
+    400066: polySurface4
+    400068: pPlane2
+    400070: pSphere10
+    400072: pSphere18
+    400074: pSphere19
+    400076: pSphere20
+    400078: pSphere7
+    400080: pSphere9
+    400082: transform10
+    400084: transform11
+    400086: transform12
+    400088: transform13
+    400090: transform14
+    400092: transform15
+    400094: transform16
+    400096: transform17
+    400098: transform18
+    400100: transform19
+    400102: transform20
+    400104: transform21
+    400106: transform22
+    400108: transform23
+    400110: transform24
+    400112: transform25
+    400114: transform26
+    400116: transform27
+    400118: transform28
+    400120: transform29
+    400122: transform3
+    400124: transform30
+    400126: transform31
+    400128: transform32
+    400130: transform33
+    400132: transform34
+    400134: transform35
+    400136: transform36
+    400138: transform4
+    400140: transform5
+    400142: transform6
+    400144: transform7
+    400146: transform8
+    400148: transform9
+    2100000: lambert1
+    2100002: meltdownasset10_initialShadingGroup1
+    2100004: meltdownasset9_initialShadingGroup1
+    2300000: polySurface14
+    3300000: polySurface14
+    4300000: polySurface14
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
