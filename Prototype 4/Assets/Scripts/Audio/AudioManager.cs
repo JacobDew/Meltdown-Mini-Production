@@ -132,7 +132,7 @@ public class AudioManager : MonoBehaviour
              return ; 
 
         }
-        float startVolume = sds.source.volume;
+        float startVolume = AudioListener.volume;
 
         Isfading = true;
       while (AudioListener.volume > 0)
@@ -145,8 +145,9 @@ public class AudioManager : MonoBehaviour
         }
 
         sds.source.Stop();
+        AudioListener.volume = startVolume;
 
-        Isfading = false;
+       Isfading = false;
 
         Sound ss = Array.Find(sounds, sound => sound.Name == To);
 
