@@ -223,21 +223,25 @@ public class Player : MonoBehaviour
                         {
                             case 0:
                                 {
+                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Pistol");
                                     TempObject = Instantiate(m_pCube0);
                                 }
                                 break;
                             case 1:
                                 {
+                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Sniper");
                                     TempObject = Instantiate(m_pCube1);
                                 }
                                 break;
                             case 2:
                                 {
+                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Shotgun");
                                     TempObject = Instantiate(m_pCube2);
                                 }
                                 break;
                             case 3:
                                 {
+                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Machine Gun");
                                     TempObject = Instantiate(m_pCube3);
                                 }
                                 break;

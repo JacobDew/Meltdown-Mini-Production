@@ -28,11 +28,13 @@ public class Menu : MonoBehaviour
 
     public void NextScene()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
         SceneManager.LoadScene("Level 1");
     }
 
     public void CloseApp()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
         Application.Quit();
     }
 }

@@ -53,10 +53,12 @@ public class PauseMenu : MonoBehaviour {
         {
             if (GameIsPaused)
             {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
                 Resume();
             }
             else
             {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Pause");
                 Pause();
             }
         }
@@ -65,6 +67,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
 
@@ -73,6 +76,7 @@ public class PauseMenu : MonoBehaviour {
 
     void Pause()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Pause");
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
 
@@ -81,8 +85,8 @@ public class PauseMenu : MonoBehaviour {
 
     public void MainMenu()
     {
-        
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     void HUDCheck()

@@ -24,6 +24,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void TakeDamage(float _Damage)
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Enemy Impact");
         m_fHealth -= _Damage;
         m_pPlayer.GetComponent<Player>().AddCurrency(5);
         if (0.0001f > m_fHealth)
@@ -33,6 +34,7 @@ public class EnemyHealthScript : MonoBehaviour
             short sX = 0;
             while (15 > sX)
             {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Enemy Death");
                 GameObject Temp2 = Instantiate(Temp);
                 Temp2.AddComponent<CubeScript>().Initialize(Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
                 Temp2.transform.localScale *= 2.0f;
