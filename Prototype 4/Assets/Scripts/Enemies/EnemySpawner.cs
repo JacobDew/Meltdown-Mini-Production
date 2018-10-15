@@ -54,49 +54,55 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
-        m_f60 = 0.0167f / Time.deltaTime;
-        if (true == m_bWaveActive)
+        if (3 > m_iLevel)
         {
-            if (m_iEnemyMax <= m_iEnemyCount)
+            m_f60 = 0.0167f / Time.deltaTime;
+            if (true == m_bWaveActive)
             {
-                WaveCompleted();
-            }
-            else
-            {
-                SpawnEnemy();
-            }
-
-        }
-        else if (0.0f < m_fWaveTimer)
-        {
-            m_fWaveTimer -= Time.deltaTime;
-            //Debug.Log(m_fWaveTimer);
-            if (0.0f > m_fWaveTimer)
-            {
-                if (true == LevelComplete())
+                if (m_iEnemyMax <= m_iEnemyCount)
                 {
-                    //  Level transition.
-                    m_iLevel += 1;
-                    GoToLevel(m_iLevel);
+                    WaveCompleted();
                 }
                 else
                 {
-                    m_bWaveActive = true;
-                    m_iWaveNumber += 1;
-                    m_iEnemyCount = 0;
-                    if (null != m_pCurrentWave)
+                    SpawnEnemy();
+                }
+
+            }
+            else if (0.0f < m_fWaveTimer)
+            {
+                m_fWaveTimer -= Time.deltaTime;
+                //Debug.Log(m_fWaveTimer);
+                if (0.0f > m_fWaveTimer)
+                {
+                    if (true == LevelComplete())
                     {
-                        //Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
-                        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
+                        //  Level transition.
+                        GoToLevel(m_iLevel + 1);
+                    }
+                    else
+                    {
+                        m_bWaveActive = true;
+                        m_iWaveNumber += 1;
+                        m_iEnemyCount = 0;
+                        if (null != m_pCurrentWave)
+                        {
+                            //Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
+                            m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
+                        }
                     }
                 }
             }
+            else
+            {
+
+            }
+            // m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_f60.ToString();
         }
         else
         {
-
+            Destroy(this.gameObject);
         }
-       // m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_f60.ToString();
     }
 
     void WaveCompleted()
@@ -179,7 +185,16 @@ public class EnemySpawner : MonoBehaviour
                     }
                     break;
             }
-            GameObject Temp = Instantiate(m_pEnemyTypes[Random.Range(0, 2)]);
+            int iRand = 0;
+            if (2 == m_iLevel)
+            {
+                iRand = 0;
+            }
+            else
+            {
+                iRand = Random.Range(0, 2);
+            }
+            GameObject Temp = Instantiate(m_pEnemyTypes[iRand]);
             Temp.transform.position = vSpawnPosition;
             Temp.tag = "Follower";
             m_iEnemyCount += 1;
@@ -238,20 +253,21 @@ public class EnemySpawner : MonoBehaviour
         return bComplete;
     }
 
-    private void GoToLevel(int _Level)
+    public void GoToLevel(int _Level)
     {
+        m_iLevel = _Level;
         m_iWaveNumber = 0;
         m_fWaveTimer = m_fWaveDelay;
-        switch (_Level)
+        switch (m_iLevel)
         {
             case 0:
                 {
-                    SceneManager.LoadScene("Level 2");
+                    SceneManager.LoadScene("Main");
                 }
                 break;
             case 1:
                 {
-                    SceneManager.LoadScene("Level 2");
+                    SceneManager.LoadScene("Level 1");
                 }
                 break;
             case 2:
@@ -266,7 +282,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             default:
                 {
-                    SceneManager.LoadScene("Level 2");
+                    SceneManager.LoadScene("Level 1");
                 }
                 break;
         }

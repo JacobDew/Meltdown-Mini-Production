@@ -5,11 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Currency : MonoBehaviour
 {
-    private GameObject m_pStore;
-
-    private float m_fRadius = 5.0f;
-
-    private GameObject[] m_pWares;
+    private GameObject m_pPerkMenu;
+    private GameObject m_pPlayer;
 
     private int[] m_iPrice;
 
@@ -17,87 +14,42 @@ public class Currency : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
+        m_pPlayer = GameObject.FindGameObjectWithTag("Player");
+        m_pPerkMenu = GameObject.FindGameObjectWithTag("PerkMenu");
+        m_pPerkMenu.SetActive(false);
         LoadWares();
 	}
-	
-	// Update is called once per frame
-	void Update()
-    {
-		if (null == m_pStore)
-        {
-            m_pStore = GameObject.FindGameObjectWithTag("Shop");
-        }
-	}
-
-    public bool InStore(Vector3 _Position)
-    {
-        if (null != m_pStore)
-        {
-            if (m_fRadius > Vector3.Distance(m_pStore.transform.position, _Position))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-
-        return false;
-    }
-
-    public bool Purchase(int _Type, int _Currency)
-    {
-        if (-1 < _Type && m_pWares.Length > _Type && m_iPrice.Length > _Type)
-        {
-            if (m_iPrice[_Type] < _Currency)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-
-        return false;
-    }
-
-    public bool RawPurchase(int _Type, int _Currency)
-    {
-        if (-1 < _Type && m_iPrice.Length > _Type)
-        {
-            if (m_iPrice[_Type] < _Currency)
-            {
-                Debug.Log("Purchase Success");
-                return true;
-            }
-            else
-            {
-                Debug.Log("Failed: Poor");
-                return false;
-            }
-        }
-        else
-        {
-            Debug.Log("Failed: Out of range");
-            return false;
-        }
-
-        return false;
-    }
 
     private void LoadWares()
     {
-        m_pWares = new GameObject[] { Resources.Load<GameObject>("Perk") };
         m_iPrice = new int[] { 1, 1, 1 };
     }
+
+    public void OpenPerkMenu()
+    {
+        m_pPerkMenu.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+
+    public void PerkOne()
+    {
+        m_pPlayer.GetComponent<Player>().AddPerk(0, m_iPrice[0]);
+    }
+
+    public void PerkTwo()
+    {
+        m_pPlayer.GetComponent<Player>().AddPerk(1, m_iPrice[1]);
+    }
+
+    public void PerkThree()
+    {
+        m_pPlayer.GetComponent<Player>().AddPerk(2, m_iPrice[2]);
+    }
+
+    public void Return()
+    {
+        m_pPerkMenu.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
 }

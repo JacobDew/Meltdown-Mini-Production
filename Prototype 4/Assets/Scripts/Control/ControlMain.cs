@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ControlMain : MonoBehaviour
 {
-    private GameObject m_pPlayer;
-
     private GameObject[] m_pWeaponObject;
 
     private float m_fTimer;
@@ -14,7 +12,6 @@ public class ControlMain : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
-        m_pPlayer = GameObject.FindGameObjectWithTag("Player");
         m_pWeaponObject = new GameObject[] { Resources.Load<GameObject>("Pistol"), Resources.Load<GameObject>("Sniper"), Resources.Load<GameObject>("Shotgun"),
             Resources.Load<GameObject>("AssaultRifle") };
     }

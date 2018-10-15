@@ -59,7 +59,7 @@ public class ProjectileScript : MonoBehaviour
     public void Initialize(int _Type, Vector3 _Direction, float _Damage, float _Speed, int _Pierce, int _Multishot = 0)
     {
         m_iType = _Type;
-        this.transform.position += _Direction;
+        this.transform.position += _Direction * 2.0f;
         m_vDirection = _Direction;
         m_fDamage = _Damage;
         m_fSpeed = _Speed;

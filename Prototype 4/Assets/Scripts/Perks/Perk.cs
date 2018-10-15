@@ -43,7 +43,7 @@ public class Perk : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            m_pPlayer.GetComponent<Player>().AddPerk(m_iPerk);
+            m_pPlayer.GetComponent<Player>().AddPerk(m_iPerk, 0);
             Destroy(gameObject);
         }
     }

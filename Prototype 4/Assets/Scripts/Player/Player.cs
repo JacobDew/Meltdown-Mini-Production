@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private GameObject m_Player;        //  Pointer to this player object.
-
     private GameObject m_pHealth;       //  Health display.
 
     private GameObject m_pCube0;        //  Weapon objects.
@@ -27,10 +25,10 @@ public class Player : MonoBehaviour
 
     private float m_fLastShot;          //  Works with fire-delay.
 
-    public int m_iWeapon;              //  Current Weapon.
+    public int m_iWeapon;               //  Current Weapon.
     private float m_fFireDelay;         //  Delay between shots.
     private float m_fDamage;            //  Damage of the current weapon.
-    public int m_iAmmoCount;           //  Number of shots available.
+    public int m_iAmmoCount;            //  Number of shots available.
     private int m_iMultiHit;            //  May be a multi-hit mechanic. Apply extra hits at the cost of pierce?
     private float m_fProjectileSpeed;   //  Speed of the projectiles.
     private int m_iWeaponPierce;        //  Weapon's number of natural pierces.
@@ -47,7 +45,6 @@ public class Player : MonoBehaviour
         m_iCurrency = 0;
 
         //  Setting pointers.
-        m_Player = GameObject.FindGameObjectWithTag("Player");
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
 
         //  Loading projectiles.
@@ -66,7 +63,7 @@ public class Player : MonoBehaviour
         m_fHealth = 100.0f;
 
         //  Setting up health display.
-        m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y , m_Player.transform.position.z );
+        m_pHealth.transform.position = new Vector3(this.transform.position.x , this.transform.position.y , this.transform.position.z );
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = 100f;
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
 
@@ -82,7 +79,7 @@ public class Player : MonoBehaviour
         ProcessInput();
 
         //Updates posistion and value of Player healthBar
-        m_pHealth.transform.position = new Vector3(m_Player.transform.position.x , m_Player.transform.position.y + 5.35f, m_Player.transform.position.z);
+        m_pHealth.transform.position = new Vector3(this.transform.position.x , this.transform.position.y + 5.35f, this.transform.position.z);
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().value = m_fHealth;
         
 
@@ -162,42 +159,52 @@ public class Player : MonoBehaviour
         
     }
 
-    public void AddPerk(int _Type)
+    public bool AddPerk(int _Type, int _Cost)
     {
-        switch (_Type)
+        Debug.Log(_Cost + " / " + m_iCurrency);
+        if (_Cost > m_iCurrency)
         {
-            case 0:
-                {
-                    m_iBasePierce += 1;
-                }
-                break;
-            case 1:
-                {
-                    m_iMultiShot += 1;
-                }
-                break;
-            case 2:
-                {
-                    m_iMultiHit += 1;
-                }
-                break;
-            default:
-                {
-                    m_iBasePierce += 1;
-                }
-                break;
+            return false;
         }
+        else
+        {
+            m_iCurrency -= _Cost;
+            switch (_Type)
+            {
+                case 0:
+                    {
+                        m_iBasePierce += 1;
+                    }
+                    break;
+                case 1:
+                    {
+                        m_iMultiShot += 1;
+                    }
+                    break;
+                case 2:
+                    {
+                        m_iMultiHit += 1;
+                    }
+                    break;
+                default:
+                    {
+                        m_iBasePierce += 1;
+                    }
+                    break;
+            }
+            return true;
+        }
+        return false;
     }
 
     public void AddCurrency(int _Value)
     {
         m_iCurrency += _Value;
-        Debug.Log("Current Currency: " + m_iCurrency);
     }
     
     private void ProcessInput()
     {
-        if (true == Input.GetMouseButton(0))
+        if (true == Input.GetMouseButton(0) && 0.0f != Time.timeScale)
         {
             if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
             {
@@ -240,10 +247,12 @@ public class Player : MonoBehaviour
                                 }
                                 break;
                         }
-                        TempObject.transform.position = m_Player.transform.position;
-                        TempObject.transform.rotation = m_Player.transform.rotation;
+                        Vector3 TempVec = this.transform.position;
+                        TempVec.y = 2.7f;
+                        TempObject.transform.position = TempVec;
+                        TempObject.transform.rotation = this.transform.rotation;
                         Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) *
-                                Vector3.Normalize(new Vector3(HitPos.point.x - m_Player.transform.position.x, 0.0f, HitPos.point.z - m_Player.transform.position.z));
+                                Vector3.Normalize(new Vector3(HitPos.point.x - this.transform.position.x, 0.0f, HitPos.point.z - this.transform.position.z));
                         TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
 
                     }
@@ -263,14 +272,13 @@ public class Player : MonoBehaviour
 
         if (true == Input.GetKeyDown(KeyCode.R))
         {
-            if (null != GameObject.FindGameObjectWithTag("Shop"))
+            if (0.0f == Time.timeScale)
             {
-                int Purchase = 1;
-                if (true == this.GetComponent<Currency>().InStore(this.transform.position)
-                     && true == this.GetComponent<Currency>().RawPurchase(Purchase, m_iCurrency))
-                {
-                    AddPerk(Purchase);
-                }
+                GetComponent<Currency>().Return();
+            }
+            else
+            {
+                GetComponent<Currency>().OpenPerkMenu();
             }
         }
     }
