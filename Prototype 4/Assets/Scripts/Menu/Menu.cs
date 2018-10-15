@@ -28,6 +28,7 @@ public class Menu : MonoBehaviour
 
     public void NextScene()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Main Menu", "Level 1", 20.0f);
         SceneManager.LoadScene("Level 1");
     }
 
