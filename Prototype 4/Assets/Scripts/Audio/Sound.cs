@@ -11,9 +11,9 @@ public class Sound {
 
     public string Name;
 
-    [Range(0f, 1f)]
+    [Range(0.0f, 1.0f)]
     public float volume;
-    [Range(0f,1f) ]
+    [Range(0.0f,1.0f) ]
     public float pitch;
 
     public bool loop;
