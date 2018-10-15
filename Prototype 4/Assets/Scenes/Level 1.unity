@@ -5292,11 +5292,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f6c8e1df9b6e19847b22a0d813081d4f,
     type: 3}
   m_PrefabInternal: {fileID: 1356926685}
---- !u!4 &74723084 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400050, guid: fdd882adcfdad5a43ab477955a96986e,
-    type: 3}
-  m_PrefabInternal: {fileID: 1715530782}
 --- !u!4 &75451348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 0e5109d22fc7ccf43b5e38ab143c4f34,
@@ -13271,7 +13266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 439519555}
-  PlayerTopHalf: {fileID: 74723084}
+  PlayerTopHalf: {fileID: 439519555}
   playerSpeed: 15
 --- !u!65 &439519552
 BoxCollider:
