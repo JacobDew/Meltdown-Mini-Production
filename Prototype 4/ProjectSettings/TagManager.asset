@@ -17,6 +17,7 @@ TagManager:
   - Shop
   - SpawnControl
   - PerkMenu
+  - Currency
   layers:
   - Default
   - TransparentFX

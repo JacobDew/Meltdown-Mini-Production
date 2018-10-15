@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    AudioManager m_pAudioManager;
+    Currency m_pCurrency;
+    Text m_pText;
+
+
     private GameObject m_pHealth;       //  Health display.
 
     private GameObject m_pCube0;        //  Weapon objects.
@@ -46,6 +51,9 @@ public class Player : MonoBehaviour
 
         //  Setting pointers.
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
+        m_pAudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        m_pCurrency = this.GetComponent<Currency>();
+        m_pText = GameObject.FindGameObjectWithTag("Currency").GetComponent<Text>();
 
         //  Loading projectiles.
         m_pCube0 = Resources.Load<GameObject>("Cube0");
@@ -67,6 +75,7 @@ public class Player : MonoBehaviour
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = 100f;
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
 
+        m_pText.text = "Currency: " + m_iCurrency.ToString();
 
         //  Starting weapon.
         SetWeapon(0);
@@ -154,6 +163,7 @@ public class Player : MonoBehaviour
         }
         if (0.01f > m_fHealth)
         {
+            Destroy(GameObject.FindGameObjectWithTag("SpawnControl"));
             SceneManager.LoadScene("GameOver");
         }
         
@@ -200,6 +210,7 @@ public class Player : MonoBehaviour
     public void AddCurrency(int _Value)
     {
         m_iCurrency += _Value;
+        m_pText.text = "Currency: " + m_iCurrency.ToString();
     }
     
     private void ProcessInput()
@@ -223,25 +234,25 @@ public class Player : MonoBehaviour
                         {
                             case 0:
                                 {
-                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Pistol");
+                                    m_pAudioManager.Play("Pistol");
                                     TempObject = Instantiate(m_pCube0);
                                 }
                                 break;
                             case 1:
                                 {
-                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Sniper");
+                                    m_pAudioManager.Play("Sniper");
                                     TempObject = Instantiate(m_pCube1);
                                 }
                                 break;
                             case 2:
                                 {
-                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Shotgun");
+                                    m_pAudioManager.Play("Shotgun");
                                     TempObject = Instantiate(m_pCube2);
                                 }
                                 break;
                             case 3:
                                 {
-                                    GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Machine Gun");
+                                    m_pAudioManager.Play("Machine Gun");
                                     TempObject = Instantiate(m_pCube3);
                                 }
                                 break;

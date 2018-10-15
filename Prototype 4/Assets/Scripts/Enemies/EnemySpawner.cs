@@ -293,4 +293,12 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        m_iWaveNumber = 0;
+        m_iLevel = 1;
+        m_iEnemyCount = 0;
+        m_bWaveActive = false;
+    }
+
 }
