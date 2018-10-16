@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     //  Current Wave.
     private float m_f60 = 0.0f;
 
-    private int m_iWaveNumber = 0;
+    public int m_iWaveNumber = 0;
     private int m_iLevel = 1;
 
     private const int m_iWaveMaxLv1 = 2;
@@ -268,27 +268,27 @@ public class EnemySpawner : MonoBehaviour
         {
             case 0:
                 {
-                    SceneManager.LoadScene("Main");
+                    //SceneManager.LoadScene("Main");
                 }
                 break;
             case 1:
                 {
-                    SceneManager.LoadScene("Level 1");
+                   // SceneManager.LoadScene("Level 1");
                 }
                 break;
             case 2:
                 {
-                    SceneManager.LoadScene("Level 2");
+                   // SceneManager.LoadScene("Level 2");
                 }
                 break;
             case 3:
                 {
-                    SceneManager.LoadScene("Level 3");
+                   // SceneManager.LoadScene("Level 3");
                 }
                 break;
             default:
                 {
-                    SceneManager.LoadScene("Level 1");
+                    //SceneManager.LoadScene("Level 1");
                 }
                 break;
         }
@@ -307,4 +307,22 @@ public class EnemySpawner : MonoBehaviour
         m_bWaveActive = false;
     }
 
+    public int GetMaxWave()
+    {
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            return m_iWaveMaxLv1;
+        }
+        if (SceneManager.GetActiveScene().name == "Level 2")
+        {
+            return m_iWaveMaxLv2;
+        }
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            return m_iWaveMaxLv3;
+        }
+
+
+        return 0;
+    }
 }
