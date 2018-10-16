@@ -9,10 +9,7 @@ public class Player : MonoBehaviour
 {
     AudioManager m_pAudioManager;
     Currency m_pCurrency;
-    public Text m_pText;
-    public Text m_pPierce;
-    public Text m_pMultishot;
-    public Text m_pLives;
+    Text m_pText;
     public GameObject m_pStoreAvailable;
 
     private GameObject m_pPerkMachine;
@@ -84,9 +81,6 @@ public class Player : MonoBehaviour
 
         m_pText.text = "Currency: " + m_iCurrency.ToString();
         
-        m_pPierce.text = " ";
-        m_pMultishot.text = " ";
-        m_pLives.text = " ";
         m_pStoreAvailable.SetActive(false);
 
         //  Starting weapon.
@@ -176,7 +170,6 @@ public class Player : MonoBehaviour
         if (0.01f > m_fHealth)
         {
             m_iLives -= 1;
-            m_pLives.text = "Lives: " + m_iLives.ToString();
             if (0 > m_iLives)
             {
                 Destroy(GameObject.FindGameObjectWithTag("SpawnControl"));
