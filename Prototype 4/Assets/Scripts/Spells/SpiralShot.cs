@@ -40,6 +40,11 @@ public class SpiralShot : MonoBehaviour
         }
     }
 
+    public void SetDirection(Vector3 _Direction)
+    {
+        m_vForwardVector = _Direction;
+    }
+
     void OnBecameInvisible()
     {
         Destroy(gameObject);
