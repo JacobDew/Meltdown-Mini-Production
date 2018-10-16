@@ -29,7 +29,7 @@ public class BossAttack : MonoBehaviour
     {
 		if (0.0001f > m_fTimer)
         {
-            Invoke("Attack1"/*m_sFunctions[Random.Range(0, m_sFunctions.Length)]*/, 0.0f);
+            Invoke("Attack2"/*m_sFunctions[Random.Range(0, m_sFunctions.Length)]*/, 0.0f);
         }
         m_fTimer -= Time.deltaTime;
 	}
@@ -47,7 +47,10 @@ public class BossAttack : MonoBehaviour
 
     void Attack2()
     {
-
+        GameObject TempPtr = Instantiate(m_pCubeZ);
+        TempPtr.transform.position = this.transform.position;
+        TempPtr.AddComponent<SplitingShot>();
+        m_fTimer = 8.0f;
     }
 
     void Attack3()

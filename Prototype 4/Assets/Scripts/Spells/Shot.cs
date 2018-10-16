@@ -42,7 +42,13 @@ public class Shot : MonoBehaviour
         m_fBiasSpeed = _BiasSpeed;
         this.gameObject.AddComponent<BoxCollider>().isTrigger = true;
     }
-    
+
+    public void Initialize(Vector3 _Forward)
+    {
+        m_vForward = _Forward;
+        this.gameObject.AddComponent<BoxCollider>().isTrigger = true;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
