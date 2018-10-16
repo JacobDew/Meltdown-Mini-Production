@@ -54,6 +54,11 @@ public class ProjectileScript : MonoBehaviour
             }
             m_pHitList.Add(other.gameObject);
         }
+
+        if (other.tag == "Block")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Initialize(int _Type, Vector3 _Direction, float _Damage, float _Speed, int _Pierce, int _Multishot = 0)

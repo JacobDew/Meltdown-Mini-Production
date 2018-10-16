@@ -21,6 +21,7 @@ TagManager:
   - Lives
   - PierceCount
   - Multishot
+  - Block
   layers:
   - Default
   - TransparentFX
