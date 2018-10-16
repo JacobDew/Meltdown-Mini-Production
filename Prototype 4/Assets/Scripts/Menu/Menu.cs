@@ -11,9 +11,12 @@ public class Menu : MonoBehaviour
 
     public GameObject slider;
 
+    private GameObject m_pFadecanvas;
+
     private void Awake()
     {
         m_fVolumeLevel = slider.GetComponent<Slider>().value;
+        m_pFadecanvas = GameObject.Find("Fade Canvas");
     }
 
 
@@ -29,8 +32,11 @@ public class Menu : MonoBehaviour
     public void NextScene()
     {
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
+
+        m_pFadecanvas.GetComponent<LevelChanger>().FadeToLevel("Level 1");
+
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Main Menu", "Level 1", 20.0f);
-        SceneManager.LoadScene("Level 1");
+        
     }
 
     public void CloseApp()
