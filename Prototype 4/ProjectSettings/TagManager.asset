@@ -21,7 +21,6 @@ TagManager:
   - Lives
   - PierceCount
   - Multishot
-  - FinalBoss
   layers:
   - Default
   - TransparentFX
