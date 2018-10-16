@@ -18,6 +18,7 @@ public class Currency : MonoBehaviour
         m_pPerkMenu = GameObject.FindGameObjectWithTag("PerkMenu");
         m_pPerkMenu.SetActive(false);
         LoadWares();
+        DontDestroyOnLoad(m_pPerkMenu);
 	}
 
     private void LoadWares()

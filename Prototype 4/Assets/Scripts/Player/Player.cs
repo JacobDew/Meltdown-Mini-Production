@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     AudioManager m_pAudioManager;
     Currency m_pCurrency;
     Text m_pText;
+    Text m_pPierce;
+    Text m_pMultishot;
+    Text m_pLives;
 
 
     private GameObject m_pHealth;       //  Health display.
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     private int m_iCurrency;            //  Currency value.
 
     private float m_fHealth;            //  Player Health.
+    private int m_iLives;
 
     private float m_fLastShot;          //  Works with fire-delay.
 
@@ -48,6 +52,7 @@ public class Player : MonoBehaviour
         //  Currency values.
         //m_Player.AddComponent<Currency>();
         m_iCurrency = 0;
+        m_iLives = 0;
 
         //  Setting pointers.
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
@@ -76,6 +81,14 @@ public class Player : MonoBehaviour
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
 
         m_pText.text = "Currency: " + m_iCurrency.ToString();
+
+        m_pPierce = GameObject.FindGameObjectWithTag("PierceCount").GetComponent<Text>();
+        m_pMultishot = GameObject.FindGameObjectWithTag("Multishot").GetComponent<Text>();
+        m_pLives = GameObject.FindGameObjectWithTag("Lives").GetComponent<Text>();
+        m_pPierce.text = "Pierce: " + m_iBasePierce.ToString();
+        m_pMultishot.text = "Multishot: " + m_iMultiShot.ToString();
+        m_pLives.text = "Lives: " + m_iLives.ToString();
+
 
         //  Starting weapon.
         SetWeapon(0);
@@ -163,8 +176,17 @@ public class Player : MonoBehaviour
         }
         if (0.01f > m_fHealth)
         {
-            Destroy(GameObject.FindGameObjectWithTag("SpawnControl"));
-            SceneManager.LoadScene("GameOver");
+            m_iLives -= 1;
+            m_pLives.text = "Lives: " + m_iLives.ToString();
+            if (0 > m_iLives)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("SpawnControl"));
+                SceneManager.LoadScene("GameOver");
+            }
+            else
+            {
+                m_fHealth = 100.0f;
+            }
         }
         
     }
@@ -184,16 +206,24 @@ public class Player : MonoBehaviour
                 case 0:
                     {
                         m_iBasePierce += 1;
+                        m_pPierce.text = "Pierce: " + m_iBasePierce.ToString();
                     }
                     break;
                 case 1:
                     {
                         m_iMultiShot += 1;
+                        m_pMultishot.text = "Multishot: " + m_iMultiShot.ToString();
                     }
                     break;
                 case 2:
                     {
-                        m_iMultiHit += 1;
+                        m_iLives += 1;
+                        m_pLives.text = "Lives: " + m_iLives.ToString();
+                    }
+                    break;
+                case 3:
+                    {
+                        TakeDamage(-50.0f);
                     }
                     break;
                 default:

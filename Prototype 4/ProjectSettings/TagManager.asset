@@ -18,6 +18,9 @@ TagManager:
   - SpawnControl
   - PerkMenu
   - Currency
+  - Lives
+  - PierceCount
+  - Multishot
   layers:
   - Default
   - TransparentFX
