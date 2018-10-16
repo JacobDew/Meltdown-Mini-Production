@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Text m_pPierce;
     public Text m_pMultishot;
     public Text m_pLives;
+    public GameObject m_pStoreAvailable;
 
     private GameObject m_pPerkMachine;
 
@@ -86,7 +87,7 @@ public class Player : MonoBehaviour
         m_pPierce.text = " ";
         m_pMultishot.text = " ";
         m_pLives.text = " ";
-
+        m_pStoreAvailable.SetActive(false);
 
         //  Starting weapon.
         SetWeapon(0);
@@ -202,22 +203,24 @@ public class Player : MonoBehaviour
             m_pText.text = "Currency: " + m_iCurrency.ToString();
             switch (_Type)
             {
+                //  Purchased text not set.
+                //  Consider image swaps once perk is owned.
                 case 0:
                     {
                         m_iBasePierce += 2;
-                        m_pPierce.text = "Owned!";
+                        //m_pPierce.text = "Owned!";
                     }
                     break;
                 case 1:
                     {
                         m_iMultiShot += 6;
-                        m_pMultishot.text = "Owned!";
+                        //m_pMultishot.text = "Owned!";
                     }
                     break;
                 case 2:
                     {
                         m_iLives += 1;
-                        m_pLives.text = "Owned!";
+                        //m_pLives.text = "Owned!";
                     }
                     break;
                 case 3:
@@ -320,8 +323,13 @@ public class Player : MonoBehaviour
             if (7.0f > Vector3.Distance(m_pPerkMachine.transform.position, this.transform.position))
             {
                 //  Display hotkey to open perk store.
+                m_pStoreAvailable.SetActive(true);
             }
-            if (true == Input.GetKeyDown(KeyCode.R))
+            else
+            {
+                m_pStoreAvailable.SetActive(false);
+            }
+            if (true == Input.GetKeyDown(KeyCode.F))
             {
                 if (0.0f == Time.timeScale)
                 {

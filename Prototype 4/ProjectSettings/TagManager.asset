@@ -23,6 +23,7 @@ TagManager:
   - Multishot
   - Block
   - PerkMachine
+  - StoreText
   layers:
   - Default
   - TransparentFX
