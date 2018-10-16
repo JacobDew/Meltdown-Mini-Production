@@ -291,7 +291,7 @@ public class Player : MonoBehaviour
                                 break;
                         }
                         Vector3 TempVec = this.transform.position;
-                        TempVec.y = 2.7f;
+                        TempVec.y = TempVec.y + 1.0f;
                         TempObject.transform.position = TempVec;
                         TempObject.transform.rotation = this.transform.rotation;
                         Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) *
