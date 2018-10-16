@@ -18,7 +18,7 @@ public class SplitingShot : MonoBehaviour
     void Start()
     {
         this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), 45.0f);
-        m_pEffectCubeX = Resources.Load<GameObject>("EffectCubeZ");
+        m_pEffectCubeX = Resources.Load<GameObject>("EffectCubeY");
 	}
 	
 	// Update is called once per frame

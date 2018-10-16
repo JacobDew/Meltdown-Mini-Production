@@ -20,7 +20,7 @@ public class SpiralShot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_pEffectCubeX = Resources.Load<GameObject>("EffectCubeZ");
+        m_pEffectCubeX = Resources.Load<GameObject>("EffectCubeY");
     }
 
     // Update is called once per frame
