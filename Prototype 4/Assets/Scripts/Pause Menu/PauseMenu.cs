@@ -19,7 +19,6 @@ public class PauseMenu : MonoBehaviour {
     private GameObject m_MachineGunSprite;
 
     private GameObject m_AmnoCounter;
-    private GameObject m_pFadecanvas;
 
     void Start()
     {
@@ -29,7 +28,7 @@ public class PauseMenu : MonoBehaviour {
         m_PistolSprite = GameObject.Find("Pistol");
         m_MachineGunSprite = GameObject.Find("Machine Gun");
         m_AmnoCounter = GameObject.Find("Current Ammo");
-        m_pFadecanvas = GameObject.Find("Fade Canvas");
+
         HUDCheck();
 
         Time.timeScale = 1;
@@ -87,9 +86,7 @@ public class PauseMenu : MonoBehaviour {
     public void MainMenu()
     {
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
-
-        m_pFadecanvas.GetComponent<LevelChanger>().FadeToLevel("Main");
-        Resume();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     void HUDCheck()
