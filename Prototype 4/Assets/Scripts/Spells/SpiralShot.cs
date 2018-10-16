@@ -17,14 +17,14 @@ public class SpiralShot : MonoBehaviour
     //  Deltatime variable to save processing.
     private float m_fDeltaTime = 0.0f;
 
-	// Use this for initialization
-	void Start()
+    // Use this for initialization
+    void Start()
     {
         m_pEffectCubeX = Resources.Load<GameObject>("EffectCubeZ");
     }
-	
-	// Update is called once per frame
-	void Update()
+
+    // Update is called once per frame
+    void Update()
     {
         m_fDeltaTime = Time.deltaTime;
         this.transform.position += m_vForwardVector * m_fSpeed * m_fDeltaTime;
@@ -38,5 +38,13 @@ public class SpiralShot : MonoBehaviour
             Instantiate(m_pEffectCubeX, this.transform.position, this.transform.rotation).AddComponent<Shot>().Initialize(new Vector3(0.0f, 0.0f, -1.0f), m_vForwardVector, m_fSpeed);
             m_fProjectileTimer = 0.0f;
         }
-	}
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+    
+
+
 }

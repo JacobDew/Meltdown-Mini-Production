@@ -19,8 +19,8 @@ public class Shot : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update()
@@ -40,5 +40,17 @@ public class Shot : MonoBehaviour
         m_vForward = _Forward;
         m_vBias = _Bias;
         m_fBiasSpeed = _BiasSpeed;
+        this.gameObject.AddComponent<BoxCollider>().isTrigger = true;
     }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.GetComponent<Player>().TakeDamage(m_fSpeed * 2.0f);
+            Destroy(this.gameObject);
+        }
+    }
+
+
 }
