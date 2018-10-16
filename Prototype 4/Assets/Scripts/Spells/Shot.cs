@@ -16,14 +16,14 @@ public class Shot : MonoBehaviour
     private float m_fDeltaTime = 0.0f;
 
 
-    // Use this for initialization
-    void Start()
+	// Use this for initialization
+	void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
+		
+	}
+	
+	// Update is called once per frame
+	void Update()
     {
         m_fDeltaTime = Time.deltaTime;
         this.transform.Translate(m_vForward * m_fSpeed * m_fDeltaTime);
@@ -33,22 +33,12 @@ public class Shot : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
+	}
 
     public void Initialize(Vector3 _Forward, Vector3 _Bias, float _BiasSpeed)
     {
         m_vForward = _Forward;
         m_vBias = _Bias;
         m_fBiasSpeed = _BiasSpeed;
-        this.gameObject.AddComponent<BoxCollider>().isTrigger = true;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            other.GetComponent<Player>().TakeDamage(m_fSpeed * 2.0f);
-            Destroy(this.gameObject);
-        }
     }
 }

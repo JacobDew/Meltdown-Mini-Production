@@ -1,28 +1,21 @@
 fileFormatVersion: 2
-guid: 62a12dbf2054b224e91d3ee38420e6da
-labels:
-- usfx
-- imphenzia
-- weapon
-- scifi
-- sci-fi
-- blaster
-- raygun
-- energy
-- stereo
+guid: a8181fd53e17b81469f4e66b32c40c13
 AudioImporter:
+  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
-    loadType: 1
+    loadType: 0
     sampleRateSetting: 0
-    sampleRateOverride: 0
-    compressionFormat: 0
-    quality: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
     conversionMode: 0
   platformSettingOverrides: {}
   forceToMono: 0
+  normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
+  ambisonic: 0
   3D: 1
   userData: 
   assetBundleName: 

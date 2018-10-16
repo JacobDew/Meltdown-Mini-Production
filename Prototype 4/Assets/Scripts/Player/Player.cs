@@ -10,9 +10,9 @@ public class Player : MonoBehaviour
     AudioManager m_pAudioManager;
     Currency m_pCurrency;
     Text m_pText;
-    public Text m_pPierce;
-    public Text m_pMultishot;
-    public Text m_pLives;
+    Text m_pPierce;
+    Text m_pMultishot;
+    Text m_pLives;
 
 
     private GameObject m_pHealth;       //  Health display.
@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
     private float m_fProjectileSpeed;   //  Speed of the projectiles.
     private int m_iWeaponPierce;        //  Weapon's number of natural pierces.
     private int m_iMultiShot;           //  Number of projectiles.
-    private int m_iWeaponMultishot;
     private int m_iBasePierce;          //  number of enemies the projectile can hit.
 
     private float m_fSpread;
@@ -51,14 +50,15 @@ public class Player : MonoBehaviour
 	void Start()
     {
         //  Currency values.
+        //m_Player.AddComponent<Currency>();
         m_iCurrency = 0;
         m_iLives = 0;
-        m_iMultiShot = 0;
 
         //  Setting pointers.
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
         m_pAudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         m_pCurrency = this.GetComponent<Currency>();
+        m_pText = GameObject.FindGameObjectWithTag("Currency").GetComponent<Text>();
 
         //  Loading projectiles.
         m_pCube0 = Resources.Load<GameObject>("Cube0");
@@ -79,13 +79,15 @@ public class Player : MonoBehaviour
         m_pHealth.transform.position = new Vector3(this.transform.position.x , this.transform.position.y , this.transform.position.z );
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().maxValue = 100f;
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
-        
-        m_pText = GameObject.FindGameObjectWithTag("Currency").GetComponent<Text>();
+
         m_pText.text = "Currency: " + m_iCurrency.ToString();
-        
-        m_pPierce.text = " ";
-        m_pMultishot.text = " ";
-        m_pLives.text = " ";
+
+        m_pPierce = GameObject.FindGameObjectWithTag("PierceCount").GetComponent<Text>();
+        m_pMultishot = GameObject.FindGameObjectWithTag("Multishot").GetComponent<Text>();
+        m_pLives = GameObject.FindGameObjectWithTag("Lives").GetComponent<Text>();
+        m_pPierce.text = "Pierce: " + m_iBasePierce.ToString();
+        m_pMultishot.text = "Multishot: " + m_iMultiShot.ToString();
+        m_pLives.text = "Lives: " + m_iLives.ToString();
 
 
         //  Starting weapon.
@@ -119,7 +121,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 2.6f;
                     m_fProjectileSpeed = 20.0f;
                     m_iWeaponPierce = 0;
-                    m_iWeaponMultishot = 0;
+                    m_iMultiShot = 0;
                     m_fSpread = 0.5f;
                 }
                 break;
@@ -130,7 +132,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 13.0f;
                     m_fProjectileSpeed = 50.0f;
                     m_iWeaponPierce = 2;
-                    m_iWeaponMultishot = 0;
+                    m_iMultiShot = 0;
                     m_fSpread = 0.0f;
                 }
                 break;
@@ -141,7 +143,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 1.4f;
                     m_fProjectileSpeed = 90.0f;
                     m_iWeaponPierce = 0;
-                    m_iWeaponMultishot = 10;
+                    m_iMultiShot = 10;
                     m_fSpread = 0.0f;
                 }
                 break;
@@ -152,7 +154,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 0.85f;
                     m_fProjectileSpeed = 30.0f;
                     m_iWeaponPierce = 0;
-                    m_iWeaponMultishot = 0;
+                    m_iMultiShot = 0;
                     m_fSpread = 5.0f;
                 }
                 break;
@@ -203,20 +205,20 @@ public class Player : MonoBehaviour
             {
                 case 0:
                     {
-                        m_iBasePierce += 2;
-                        m_pPierce.text = "Purchased!";
+                        m_iBasePierce += 1;
+                        m_pPierce.text = "Pierce: " + m_iBasePierce.ToString();
                     }
                     break;
                 case 1:
                     {
-                        m_iMultiShot += 5;
-                        m_pMultishot.text = "Purchased!";
+                        m_iMultiShot += 1;
+                        m_pMultishot.text = "Multishot: " + m_iMultiShot.ToString();
                     }
                     break;
                 case 2:
                     {
                         m_iLives += 1;
-                        m_pLives.text = "Purchased!";
+                        m_pLives.text = "Lives: " + m_iLives.ToString();
                     }
                     break;
                 case 3:
@@ -250,11 +252,13 @@ public class Player : MonoBehaviour
                 m_iAmmoCount -= 1;
                 RaycastHit HitPos;
                 Ray Temp = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.Log(m_iAmmoCount);
                 m_fLastShot = m_fFireDelay;
                 if (Physics.Raycast(Temp.origin, Temp.direction, out HitPos, LayerMask))
                 {
                     if (null != HitPos.point)
                     {
+                        Debug.Log(HitPos.point);
                         GameObject TempObject;
                         switch (m_iWeapon)
                         {
@@ -294,7 +298,7 @@ public class Player : MonoBehaviour
                         TempObject.transform.rotation = this.transform.rotation;
                         Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) *
                                 Vector3.Normalize(new Vector3(HitPos.point.x - this.transform.position.x, 0.0f, HitPos.point.z - this.transform.position.z));
-                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot + m_iWeaponMultishot);
+                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
 
                     }
                 }
