@@ -54,6 +54,12 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+
         if (3 > m_iLevel)
         {
             m_f60 = 0.0167f / Time.deltaTime;
