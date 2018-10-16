@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     AudioManager m_pAudioManager;
     Currency m_pCurrency;
-    Text m_pText;
+    public Text m_pText;
     public Text m_pPierce;
     public Text m_pMultishot;
     public Text m_pLives;
@@ -198,17 +198,18 @@ public class Player : MonoBehaviour
         else
         {
             m_iCurrency -= _Cost;
+            m_pText.text = "Currency: " + m_iCurrency.ToString();
             switch (_Type)
             {
                 case 0:
                     {
-                        m_iBasePierce += 1;
+                        m_iBasePierce += 2;
                         m_pPierce.text = "Owned!";
                     }
                     break;
                 case 1:
                     {
-                        m_iMultiShot += 1;
+                        m_iMultiShot += 6;
                         m_pMultishot.text = "Owned!";
                     }
                     break;
