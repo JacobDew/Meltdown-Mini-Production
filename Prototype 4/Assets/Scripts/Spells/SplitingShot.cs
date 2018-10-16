@@ -9,7 +9,7 @@ public class SplitingShot : MonoBehaviour
     Vector3 m_vForward = new Vector3(-0.7071f, 0.0f, -0.7071f);
 
     private float m_fProjectileTimer = 0.0f;
-    private float m_fProjectileDelay = 0.55f;
+    private float m_fProjectileDelay = 0.75f;
     private float m_fSpeed = 8.0f;
 
     private float m_fDelta = 0.0f;

@@ -11,7 +11,7 @@ public class SpiralShot : MonoBehaviour
     private Vector3 m_vForwardVector = new Vector3(-0.7071f, 0.0f, -0.7071f);
 
     private float m_fProjectileTimer = 0.0f;
-    private float m_fProjectileDelay = 0.55f;
+    private float m_fProjectileDelay = 0.95f;
     private float m_fSpeed = 5.0f;
 
     //  Deltatime variable to save processing.
