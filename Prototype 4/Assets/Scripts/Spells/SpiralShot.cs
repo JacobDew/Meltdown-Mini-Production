@@ -39,4 +39,9 @@ public class SpiralShot : MonoBehaviour
             m_fProjectileTimer = 0.0f;
         }
 	}
+
+    public void SetDirection(Vector3 _Forward)
+    {
+        m_vForwardVector = _Forward;
+    }
 }
