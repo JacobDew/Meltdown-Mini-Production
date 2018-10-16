@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Text m_pMultishot;
     public Text m_pLives;
 
+    private GameObject m_pPerkMachine;
 
     private GameObject m_pHealth;       //  Health display.
 
@@ -243,6 +244,7 @@ public class Player : MonoBehaviour
     
     private void ProcessInput()
     {
+        //  If left mouse button is pressed and game is not paused.
         if (true == Input.GetMouseButton(0) && 0.0f != Time.timeScale)
         {
             if (0.0f > m_fLastShot && 0 < m_iAmmoCount)
@@ -302,27 +304,43 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
+        //  Checking if middle mouse button is pressed.
         if (true == Input.GetMouseButton(1))
         {
 
         }
-
+        //  Checking if right mouse button is pressed.
         if (true == Input.GetMouseButton(2))
         {
 
         }
 
-        if (true == Input.GetKeyDown(KeyCode.R))
+        if (null != m_pPerkMachine)
         {
-            if (0.0f == Time.timeScale)
+            if (7.0f > Vector3.Distance(m_pPerkMachine.transform.position, this.transform.position))
             {
-                GetComponent<Currency>().Return();
+                //  Display hotkey to open perk store.
             }
-            else
+            if (true == Input.GetKeyDown(KeyCode.R))
             {
-                GetComponent<Currency>().OpenPerkMenu();
+                if (0.0f == Time.timeScale)
+                {
+                    //  Closable from any position for safety purposes.
+                    //  Close perk menu.
+                    GetComponent<Currency>().Return();
+                }
+                else if (7.1f > Vector3.Distance(m_pPerkMachine.transform.position, this.transform.position))
+                {
+                    //  Only opened if in range.
+                    //  Open perk menu.
+                    GetComponent<Currency>().OpenPerkMenu();
+                }
             }
         }
+        else
+        {
+            m_pPerkMachine = GameObject.FindGameObjectWithTag("PerkMachine");
+        }
     }
+
 }

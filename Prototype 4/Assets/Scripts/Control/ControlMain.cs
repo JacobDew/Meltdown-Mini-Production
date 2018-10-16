@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlMain : MonoBehaviour
 {
@@ -28,7 +29,14 @@ public class ControlMain : MonoBehaviour
             Temp.AddComponent<Weapon0>();
             Temp.GetComponent<Weapon0>().Initialize(WeaponType);
             //Temp.GetComponent<Renderer>().material = Resources.Load<Material>(WeaponType.ToString());
-            m_fTimer = 0.0f;
+            if ("Level 1" == SceneManager.GetActiveScene().name)
+            {
+                m_fTimer = 0.0f;
+            }
+            else
+            {
+                m_fTimer = -7.0f;
+            }
         }
         m_fTimer += Time.deltaTime;
 	}
