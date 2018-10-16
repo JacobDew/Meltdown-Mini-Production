@@ -13388,7 +13388,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Perk One
+  m_Text: Pierce Up!
 --- !u!222 &456119221
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -69367,7 +69367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Perk Two
+  m_Text: Multi-Shot!
 --- !u!222 &1689975712
 CanvasRenderer:
   m_ObjectHideFlags: 0
