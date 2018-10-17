@@ -81,6 +81,7 @@ public class ProjectileScript : MonoBehaviour
         HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
         HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
         HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().AddCurrency(70);
         Destroy(this.gameObject);
     }
 
