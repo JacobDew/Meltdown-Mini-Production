@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class TowerEnemeyAI : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class TowerEnemeyAI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if ("Level 1" != SceneManager.GetActiveScene().name)
+        {
+            Destroy(this.gameObject);
+        }
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = c_fMaxSpeed * 5;
 

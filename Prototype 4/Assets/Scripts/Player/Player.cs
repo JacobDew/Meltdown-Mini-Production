@@ -80,7 +80,11 @@ public class Player : MonoBehaviour
         m_pHealth.transform.Find("Panel/Slider").gameObject.GetComponent<Slider>().minValue = 0f;
 
         m_pText.text = "Currency: " + m_iCurrency.ToString();
-        
+
+        if (null == m_pStoreAvailable)
+        {
+            m_pStoreAvailable = GameObject.Find("Store Text");
+        }
         m_pStoreAvailable.SetActive(false);
 
         //  Starting weapon.
@@ -312,6 +316,10 @@ public class Player : MonoBehaviour
 
         if (null != m_pPerkMachine)
         {
+            if (null == m_pStoreAvailable)
+            {
+                m_pStoreAvailable = GameObject.Find("Store Text");
+            }
             if (7.0f > Vector3.Distance(m_pPerkMachine.transform.position, this.transform.position))
             {
                 //  Display hotkey to open perk store.
