@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     private GameObject m_pPerkMachine;
 
     private GameObject m_pHealth;       //  Health display.
+    private GameObject m_pMultiShot;
+    private GameObject m_pPiercing;
+    private GameObject m_pExtraLife;
 
     private GameObject m_pCube0;        //  Weapon objects.
     private GameObject m_pCube1;
@@ -66,6 +69,16 @@ public class Player : MonoBehaviour
         m_pCube2 = Resources.Load<GameObject>("Cube2");
         m_pCube3 = Resources.Load<GameObject>("Cube3");
 
+        m_pMultiShot = GameObject.Find("Multishot");
+        m_pPiercing = GameObject.Find("Piercing");
+        m_pExtraLife = GameObject.Find("ExtraLife");
+        m_pMultiShot.SetActive(false);
+        m_pPiercing.SetActive(false);
+        m_pExtraLife.SetActive(false);
+      
+       
+
+
         //  Add Plane Point.
         m_vPlanePoint = new Vector3(0.0f, 0.43f, 0.0f);
         m_vPlaneNormal = new Vector3(0.0f, 1.0f, 0.0f);
@@ -97,6 +110,11 @@ public class Player : MonoBehaviour
     {
         //  Check input.
         ProcessInput();
+
+        if (m_iLives == 0)
+        {
+            m_pExtraLife.SetActive(false);
+        }
 
         //Updates posistion and value of Player healthBar
         m_pHealth.transform.position = new Vector3(this.transform.position.x , this.transform.position.y + 5.35f, this.transform.position.z);
@@ -205,18 +223,24 @@ public class Player : MonoBehaviour
                 //  Consider image swaps once perk is owned.
                 case 0:
                     {
+                        m_pPiercing.SetActive(true);
+
                         m_iBasePierce += 2;
                         //m_pPierce.text = "Owned!";
                     }
                     break;
                 case 1:
                     {
+                        m_pMultiShot.SetActive(true);
+
                         m_iMultiShot += 6;
                         //m_pMultishot.text = "Owned!";
                     }
                     break;
                 case 2:
                     {
+                        m_pExtraLife.SetActive(true);
+
                         m_iLives += 1;
                         //m_pLives.text = "Owned!";
                     }
@@ -228,6 +252,9 @@ public class Player : MonoBehaviour
                     break;
                 default:
                     {
+                        m_pMultiShot.SetActive(false);
+                        m_pPiercing.SetActive(false);
+                        m_pExtraLife.SetActive(false);
                         m_iBasePierce += 1;
                     }
                     break;
