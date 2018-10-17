@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject[] m_pEnemyTypes;
 
-
+    private GameObject m_pWaveCompleteText;
     private GameObject m_pCurrentWave;
 
     //  Current Wave.
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     //  Delay between waves.
     private float m_fWaveTimer = 1.0f;
-    private const float m_fWaveDelay = 1.0f;
+    private const float m_fWaveDelay = 8.0f;
 
     //  Number of enemies for current wave
     private int m_iEnemyCount = 0;
@@ -50,6 +50,11 @@ public class EnemySpawner : MonoBehaviour
         m_pCurrentWave = GameObject.FindGameObjectWithTag("CurrentWave");
         m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
         m_pEnemyTypes = new GameObject[] { Resources.Load<GameObject>("Enemey"), Resources.Load<GameObject>("TowerEnemey") };
+        m_pWaveCompleteText = GameObject.Find("WaveComplete");
+        if (null != m_pWaveCompleteText)
+        {
+            m_pWaveCompleteText.SetActive(false);
+        }
     }
     
     void Update()
@@ -81,21 +86,14 @@ public class EnemySpawner : MonoBehaviour
                 //Debug.Log(m_fWaveTimer);
                 if (0.0f > m_fWaveTimer)
                 {
-                    if (true == LevelComplete())
+                    m_pWaveCompleteText.SetActive(false);
+                    m_bWaveActive = true;
+                    m_iWaveNumber += 1;
+                    m_iEnemyCount = 0;
+                    if (null != m_pCurrentWave)
                     {
-                        //  Level transition.
-                        GoToLevel(m_iLevel + 1);
-                    }
-                    else
-                    {
-                        m_bWaveActive = true;
-                        m_iWaveNumber += 1;
-                        m_iEnemyCount = 0;
-                        if (null != m_pCurrentWave)
-                        {
-                            //Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
-                            m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
-                        }
+                        //Debug.Log("Lv: " + m_iLevel + " Wv: " + m_iWaveNumber);
+                        m_pCurrentWave.GetComponent<Text>().text = "Wave: " + m_iWaveNumber.ToString();
                     }
                 }
             }
@@ -117,6 +115,8 @@ public class EnemySpawner : MonoBehaviour
         {
             if (0 == GameObject.FindGameObjectsWithTag("Follower").Length)
             {
+                m_pWaveCompleteText.GetComponent<Text>().text = "Wave " + m_iWaveNumber.ToString() + " Complete!";
+                m_pWaveCompleteText.SetActive(true);
                 m_bWaveActive = false;
                 m_fWaveTimer = m_fWaveDelay;
                 //  Start Wave_Change Text animation.
@@ -208,14 +208,14 @@ public class EnemySpawner : MonoBehaviour
         m_fSpawnTimer -= Time.deltaTime;
     }
 
-    private bool LevelComplete()
+    public bool LevelComplete()
     {
         bool bComplete = false;
         switch (m_iWaveNumber)
         {
             case 1:
                 {
-                    if (m_iWaveMaxLv1 > m_iWaveNumber)
+                    if (m_iWaveMaxLv1 > m_iWaveNumber && false == m_bWaveActive)
                     {
                         bComplete = false;
                     }
@@ -227,7 +227,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             case 2:
                 {
-                    if (m_iWaveMaxLv2 > m_iWaveNumber)
+                    if (m_iWaveMaxLv2 > m_iWaveNumber && false == m_bWaveActive)
                     {
                         bComplete = false;
                     }
@@ -239,7 +239,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             case 3:
                 {
-                    if (m_iWaveMaxLv3 > m_iWaveNumber)
+                    if (m_iWaveMaxLv3 > m_iWaveNumber && false == m_bWaveActive)
                     {
                         bComplete = false;
                     }
