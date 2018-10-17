@@ -36,7 +36,9 @@ public class Menu : MonoBehaviour
         m_pFadecanvas.GetComponent<LevelChanger>().FadeToLevel("Level 1");
 
         GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Main Menu", "Level 1", 20.0f);
-        
+
+
+
     }
 
     public void CloseApp()

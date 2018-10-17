@@ -37,11 +37,13 @@ public class ExitHitbox : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (SceneManager.GetActiveScene().name == "Level 1" )
+        if (SceneManager.GetActiveScene().name == "Level 1")
         {
             if (other.tag == "Player" && IsOpened)
             {
                 m_pLevelChanger.GetComponent<LevelChanger>().FadeToLevel("Level 2");
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Level 1", "Level 2", 20.0f);
+
             }
         }
         if (SceneManager.GetActiveScene().name == "Level 2")
@@ -49,6 +51,8 @@ public class ExitHitbox : MonoBehaviour {
             if (other.tag == "Player" && IsOpened)
             {
                 m_pLevelChanger.GetComponent<LevelChanger>().FadeToLevel("Level 3");
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Level 2", "Boss Level", 20.0f);
+
             }
         }
 
