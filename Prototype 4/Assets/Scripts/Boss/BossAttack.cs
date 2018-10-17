@@ -21,6 +21,7 @@ public class BossAttack : MonoBehaviour
     {
         m_sFunctions = new string[] { "Attack1", "Attack2", "Attack3" };
         m_pCubeZ = Resources.Load<GameObject>("EffectCubeZ");
+        m_pCubeZ.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Y");
         m_pPlayer = GameObject.FindGameObjectWithTag("Player");
     }
 	
@@ -64,6 +65,7 @@ public class BossAttack : MonoBehaviour
     {
         GameObject TempPtr = Instantiate(Resources.Load<GameObject>("Pillar"));
         TempPtr.transform.position = new Vector3(Random.Range(-25.0f, 44.0f), 5.0f, Random.Range(-27.0f, 37.0f));
+        m_fTimer = 3.0f;
     }
 
 }

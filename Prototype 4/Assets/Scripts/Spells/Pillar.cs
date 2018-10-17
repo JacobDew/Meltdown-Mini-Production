@@ -88,7 +88,7 @@ public class Pillar : MonoBehaviour
             Pos2.y = 0.0f;
             if (3.0f > Vector3.Distance(Pos1, Pos2))
             {
-                m_pPlayer.GetComponent<Player>().TakeDamage(1.5f * m_fDeltaTime);
+                m_pPlayer.GetComponent<Player>().TakeDamage(3.5f * m_fDeltaTime);
             }
         }
     }
