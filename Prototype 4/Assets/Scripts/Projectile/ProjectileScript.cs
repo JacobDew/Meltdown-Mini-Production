@@ -76,11 +76,6 @@ public class ProjectileScript : MonoBehaviour
     {
         GameObject HitEffect = new GameObject();
         HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
-        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
-        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
-        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
-        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
-        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().AddCurrency(70);
         Destroy(this.gameObject);
     }
@@ -115,5 +110,8 @@ public class ProjectileScript : MonoBehaviour
         }
     }
 
-
+    public float GetDamage()
+    {
+        return m_fDamage;
+    }
 }

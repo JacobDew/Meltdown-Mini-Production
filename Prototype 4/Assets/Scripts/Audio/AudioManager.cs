@@ -80,8 +80,10 @@ public class AudioManager : MonoBehaviour
                 if (Slider == null)
                 {
                     Slider = GameObject.Find("Pause Slider");
-                    Slider.GetComponent<Slider>().value = s.source.volume;
-
+                    if (null != Slider)
+                    {
+                        Slider.GetComponent<Slider>().value = s.source.volume;
+                    }
                 }
 
                 s.source.volume = Slider.GetComponent<Slider>().value;

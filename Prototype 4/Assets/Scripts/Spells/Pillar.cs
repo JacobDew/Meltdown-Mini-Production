@@ -16,10 +16,10 @@ public class Pillar : MonoBehaviour
     private Vector3 m_vDirection = new Vector3(-0.7071f, 0.0f, 0.7071f);
     private float m_fDrawRange = 180.0f;
 
-    private float m_fLifetime = 20.0f;
+    private float m_fLifetime = 10.0f;
 
     private float m_fTimer = 0.0f;
-    private const float m_fDelay = 0.089f;
+    private const float m_fDelay = 0.2f;
 
     private float m_fDeltaTime = 0.0f;
 

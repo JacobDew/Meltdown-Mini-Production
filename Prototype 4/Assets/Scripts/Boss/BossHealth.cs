@@ -24,7 +24,7 @@ public class BossHealth : MonoBehaviour
         m_pBossHealth.GetComponent<Slider>().value = m_fHealth / m_fMaxHealth;
         Hitbox1 = new Vector3(20.0f, 1.3f, 27.1f);
         Hitbox2 = new Vector3(35.8f, 1.3f, 15.3f);
-        Hitbox3 = new Vector3(32.0f, 1.3f, 26.0f);
+        Hitbox3 = new Vector3(34.5f, 1.3f, 28.5f);
     }
 	
 	// Update is called once per frame
@@ -37,17 +37,17 @@ public class BossHealth : MonoBehaviour
             {
                 if (3.0f > Vector3.Distance(m_pProjectiles[iX].transform.position, Hitbox1))
                 {
-                    TakeDamage(7.0f);
+                    TakeDamage(m_pProjectiles[iX].GetComponent<ProjectileScript>().GetDamage());
                     m_pProjectiles[iX].GetComponent<ProjectileScript>().DestroyEffect();
                 }
                 else if (4.0f > Vector3.Distance(m_pProjectiles[iX].transform.position, Hitbox2))
                 {
-                    TakeDamage(7.0f);
+                    TakeDamage(m_pProjectiles[iX].GetComponent<ProjectileScript>().GetDamage());
                     m_pProjectiles[iX].GetComponent<ProjectileScript>().DestroyEffect();
                 }
-                else if (5.0f > Vector3.Distance(m_pProjectiles[iX].transform.position, Hitbox3))
+                else if (9.0f > Vector3.Distance(m_pProjectiles[iX].transform.position, Hitbox3))
                 {
-                    TakeDamage(7.0f);
+                    TakeDamage(m_pProjectiles[iX].GetComponent<ProjectileScript>().GetDamage());
                     m_pProjectiles[iX].GetComponent<ProjectileScript>().DestroyEffect();
                 }
             }
