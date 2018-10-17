@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     private int m_iWeaponPierce;        //  Weapon's number of natural pierces.
     private int m_iMultiShot;           //  Number of projectiles.
     private int m_iBasePierce;          //  number of enemies the projectile can hit.
+    private int m_iWeaponMultishot;
 
     private float m_fSpread;
 
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
         //m_Player.AddComponent<Currency>();
         m_iCurrency = 0;
         m_iLives = 0;
-
+        m_iWeaponMultishot = 0;
         //  Setting pointers.
         m_pHealth = GameObject.FindGameObjectWithTag("Health");
         m_pAudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -118,7 +119,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 2.6f;
                     m_fProjectileSpeed = 20.0f;
                     m_iWeaponPierce = 0;
-                    m_iMultiShot = 0;
+                    m_iWeaponMultishot = 0;
                     m_fSpread = 0.5f;
                 }
                 break;
@@ -129,7 +130,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 13.0f;
                     m_fProjectileSpeed = 50.0f;
                     m_iWeaponPierce = 2;
-                    m_iMultiShot = 0;
+                    m_iWeaponMultishot = 0;
                     m_fSpread = 0.0f;
                 }
                 break;
@@ -140,7 +141,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 1.4f;
                     m_fProjectileSpeed = 90.0f;
                     m_iWeaponPierce = 0;
-                    m_iMultiShot = 10;
+                    m_iWeaponMultishot = 10;
                     m_fSpread = 0.0f;
                 }
                 break;
@@ -151,7 +152,7 @@ public class Player : MonoBehaviour
                     m_fDamage = 0.85f;
                     m_fProjectileSpeed = 30.0f;
                     m_iWeaponPierce = 0;
-                    m_iMultiShot = 0;
+                    m_iWeaponMultishot = 0;
                     m_fSpread = 5.0f;
                 }
                 break;
@@ -297,7 +298,7 @@ public class Player : MonoBehaviour
                         TempObject.transform.rotation = this.transform.rotation;
                         Vector3 FireVector = Quaternion.Euler(0, Random.Range(-m_fSpread, m_fSpread), 0) *
                                 Vector3.Normalize(new Vector3(HitPos.point.x - this.transform.position.x, 0.0f, HitPos.point.z - this.transform.position.z));
-                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot);
+                        TempObject.GetComponent<ProjectileScript>().Initialize(m_iWeapon, FireVector, m_fDamage, m_fProjectileSpeed, m_iBasePierce + m_iWeaponPierce, m_iMultiShot + m_iWeaponMultishot);
 
                     }
                 }
