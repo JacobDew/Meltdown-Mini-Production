@@ -30,7 +30,7 @@ public class ExitHitbox : MonoBehaviour {
         {
             m_pSpawner = GameObject.Find("SpawnerControl");
         }
-        else if (m_pSpawner.GetComponent<EnemySpawner>().m_iWaveNumber >= m_pSpawner.GetComponent<EnemySpawner>().GetMaxWave() && bFirst)
+        else if (m_pSpawner.GetComponent<EnemySpawner>().LevelComplete() && bFirst)
         {
             GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Door");
             m_pPointToExit.SetActive(true);
