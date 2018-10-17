@@ -48,6 +48,7 @@ public class ExitHitbox : MonoBehaviour {
             {
                 m_pLevelChanger.GetComponent<LevelChanger>().FadeToLevel("Level 2");
                 GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Level 1", "Level 2", 20.0f);
+                m_pSpawner.GetComponent<EnemySpawner>().WaveZero();
 
             }
         }
@@ -57,6 +58,7 @@ public class ExitHitbox : MonoBehaviour {
             {
                 m_pLevelChanger.GetComponent<LevelChanger>().FadeToLevel("Level 3");
                 GameObject.Find("AudioManager").GetComponent<AudioManager>().Swap("Level 2", "Boss Level", 20.0f);
+                m_pSpawner.GetComponent<EnemySpawner>().WaveZero();
 
             }
         }

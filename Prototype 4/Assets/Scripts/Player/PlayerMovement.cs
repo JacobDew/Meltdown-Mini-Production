@@ -136,10 +136,6 @@ public class PlayerMovement : MonoBehaviour
             m_Animator.SetFloat("Input", 0.0f);
         }
 
-        if (true == Input.GetKey(KeyCode.Space))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
     }
 
 

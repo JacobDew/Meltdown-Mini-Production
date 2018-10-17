@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     private int m_iCurrency;            //  Currency value.
 
-    private float m_fHealth;            //  Player Health.
+    private float m_fHealth = 100.0f;            //  Player Health.
     private int m_iLives;
 
     private float m_fLastShot;          //  Works with fire-delay.
@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     private int m_iMultiShot;           //  Number of projectiles.
     private int m_iBasePierce;          //  number of enemies the projectile can hit.
     private int m_iWeaponMultishot;
+    private float m_fDelay = 0.0f;
 
     private float m_fSpread;
 
@@ -122,7 +123,7 @@ public class Player : MonoBehaviour
         
 
         m_fLastShot -= Time.deltaTime;
-       
+        m_fDelay -= Time.deltaTime;
     }
     
     public void SetWeapon(int _Weapon)
@@ -185,6 +186,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float _Damage)
     {
+        if (0.0f < m_fDelay)
+        {
+            return;
+        }
+        m_fDelay = 0.5f;
         m_fHealth -= _Damage;
         if (100.0f < m_fHealth)
         {

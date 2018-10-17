@@ -43,7 +43,7 @@ public class TowerEnemeyAI : MonoBehaviour
     void Update()
     {
 
-        if (null != m_Player && null != m_pTower && null != m_pTower)
+        if (null != m_Player && null != m_pTower && null != m_pTower && null != this.gameObject)
         {
             if (0.0f > m_fDamageDelay)
             {

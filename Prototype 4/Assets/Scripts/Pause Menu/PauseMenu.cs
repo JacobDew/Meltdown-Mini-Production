@@ -30,7 +30,12 @@ public class PauseMenu : MonoBehaviour {
         m_MachineGunSprite = GameObject.Find("Machine Gun");
         m_AmnoCounter = GameObject.Find("Current Ammo");
         m_pFadecanvas = GameObject.Find("Fade Canvas");
-        HUDCheck();
+
+        if (SceneManager.GetActiveScene().name != "Credits")
+        {
+            HUDCheck();
+        }
+        
 
         Time.timeScale = 1;
         GameIsPaused = false;
@@ -42,7 +47,10 @@ public class PauseMenu : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        HUDCheck();
+        if (SceneManager.GetActiveScene().name != "Credits")
+        {
+            HUDCheck();
+        }
 
         if (FirstFrame == false)
         {

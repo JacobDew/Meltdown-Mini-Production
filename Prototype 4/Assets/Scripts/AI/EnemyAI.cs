@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (null != m_Player)
+        if (null != m_Player && null != this.gameObject)
         {
             if (0.0f > m_fDamageDelay)
             {

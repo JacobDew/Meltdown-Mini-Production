@@ -23,9 +23,9 @@ public class EnemySpawner : MonoBehaviour
     public int m_iWaveNumber = 0;
     private int m_iLevel = 1;
 
-    private const int m_iWaveMaxLv1 = 2;
-    private const int m_iWaveMaxLv2 = 2;
-    private const int m_iWaveMaxLv3 = 2;
+    private const int m_iWaveMaxLv1 = 11;
+    private const int m_iWaveMaxLv2 = 11;
+    private const int m_iWaveMaxLv3 = 0;
 
     private bool m_bWaveActive = false;
 
@@ -59,6 +59,13 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
+        if (null == m_pCurrentWave)
+        {
+            m_pCurrentWave = GameObject.FindGameObjectWithTag("CurrentWave");
+
+        }
+
+
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             Destroy(this.gameObject);
@@ -156,8 +163,22 @@ public class EnemySpawner : MonoBehaviour
         return true;
     }
     
+    public void SetWaveNumber(int _Wave)
+    {
+        m_iWaveNumber = _Wave;
+    }
+
+    public void WaveZero()
+    {
+        m_iWaveNumber = 0;
+    }
+
     private void SpawnEnemy()
     {
+        if (11 == m_iWaveNumber)
+        {
+            return;
+        }
         if (0.0f > m_fSpawnTimer)
         {
             m_fSpawnTimer = m_fSpawnRate;
