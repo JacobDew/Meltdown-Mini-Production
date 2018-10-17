@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
 
     private const int m_iWaveMaxLv1 = 11;
     private const int m_iWaveMaxLv2 = 11;
-    private const int m_iWaveMaxLv3 = 0;
+    private const int m_iWaveMaxLv3 = 11;
 
     private bool m_bWaveActive = false;
 
@@ -244,11 +244,8 @@ public class EnemySpawner : MonoBehaviour
     public bool LevelComplete()
     {
         bool bComplete = false;
-        switch (m_iWaveNumber)
-        {
-            case 1:
-                {
-                    if (m_iWaveMaxLv1 <= m_iWaveNumber && false == m_bWaveActive)
+
+                    if (10 <= m_iWaveNumber && false == m_bWaveActive || 10 <= m_iWaveNumber && true == m_bWaveActive)
                     {
                         bComplete = true;
                     }
@@ -256,11 +253,9 @@ public class EnemySpawner : MonoBehaviour
                     {
                         bComplete = false;
                     }
-                }
-                break;
-            case 2:
-                {
-                    if (m_iWaveMaxLv2 <= m_iWaveNumber && false == m_bWaveActive)
+
+        Debug.Log(m_iWaveNumber);
+        if (10 <= m_iWaveNumber && false == m_bWaveActive || 10 <= m_iWaveNumber && true == m_bWaveActive)
                     {
                         bComplete = true;
                     }
@@ -268,11 +263,8 @@ public class EnemySpawner : MonoBehaviour
                     {
                         bComplete = false;
                     }
-                }
-                break;
-            case 3:
-                {
-                    if (m_iWaveMaxLv3 <= m_iWaveNumber && false == m_bWaveActive)
+
+                    if (10 <= m_iWaveNumber && false == m_bWaveActive || 10 <= m_iWaveNumber && true == m_bWaveActive)
                     {
                         bComplete = true;
                     }
@@ -280,15 +272,7 @@ public class EnemySpawner : MonoBehaviour
                     {
                         bComplete = false;
                     }
-                }
-                break;
-            default:
-                {
-                    //  No Level.
-                    bComplete = false;
-                }
-                break;
-        }
+
         return bComplete;
     }
 
