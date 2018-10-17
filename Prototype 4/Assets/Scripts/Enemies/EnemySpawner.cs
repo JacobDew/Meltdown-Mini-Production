@@ -248,37 +248,37 @@ public class EnemySpawner : MonoBehaviour
         {
             case 1:
                 {
-                    if (m_iWaveMaxLv1 > m_iWaveNumber && true == m_bWaveActive)
+                    if (m_iWaveMaxLv1 <= m_iWaveNumber && false == m_bWaveActive)
                     {
-                        bComplete = false;
+                        bComplete = true;
                     }
                     else
                     {
-                        bComplete = true;
+                        bComplete = false;
                     }
                 }
                 break;
             case 2:
                 {
-                    if (m_iWaveMaxLv2 > m_iWaveNumber && true == m_bWaveActive)
+                    if (m_iWaveMaxLv2 <= m_iWaveNumber && false == m_bWaveActive)
                     {
-                        bComplete = false;
+                        bComplete = true;
                     }
                     else
                     {
-                        bComplete = true;
+                        bComplete = false;
                     }
                 }
                 break;
             case 3:
                 {
-                    if (m_iWaveMaxLv3 > m_iWaveNumber && true == m_bWaveActive)
+                    if (m_iWaveMaxLv3 <= m_iWaveNumber && false == m_bWaveActive)
                     {
-                        bComplete = false;
+                        bComplete = true;
                     }
                     else
                     {
-                        bComplete = true;
+                        bComplete = false;
                     }
                 }
                 break;
