@@ -8,6 +8,7 @@ public class ExitHitbox : MonoBehaviour {
     private GameObject m_pSpawner;
     private Animator m_DoorAnimator;
     private GameObject m_pLevelChanger;
+    private GameObject m_pPointToExit;
 
     private bool IsOpened = false;
     private bool bFirst = true;
@@ -15,8 +16,11 @@ public class ExitHitbox : MonoBehaviour {
     // Use this for initialization
     void Start () {
         m_pSpawner = GameObject.Find("SpawnerControl");
+        m_pPointToExit = GameObject.Find("Point To Exit");
+        m_pPointToExit.SetActive(false);
         m_pLevelChanger = GameObject.Find("Fade Canvas");
         m_DoorAnimator = gameObject.GetComponent<Animator>();
+        
     }
 	
 	// Update is called once per frame
@@ -29,6 +33,7 @@ public class ExitHitbox : MonoBehaviour {
         else if (m_pSpawner.GetComponent<EnemySpawner>().m_iWaveNumber >= m_pSpawner.GetComponent<EnemySpawner>().GetMaxWave() && bFirst)
         {
             GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Door");
+            m_pPointToExit.SetActive(true);
             m_DoorAnimator.SetTrigger("OpenDoor");
             IsOpened = true;
             bFirst = false;
