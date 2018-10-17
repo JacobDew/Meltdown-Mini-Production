@@ -54,11 +54,34 @@ public class ProjectileScript : MonoBehaviour
             }
             m_pHitList.Add(other.gameObject);
         }
-
+        if (other.tag == "Boss")
+        {
+            Debug.Log("Projectile Trigger On Boss");
+            other.GetComponent<BossHealth>().TakeDamage(m_fDamage);
+            GameObject HitEffect = new GameObject();
+            HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, (this.transform.position - other.gameObject.transform.position), m_iType);
+            if (0 > m_iPierce)
+            {
+                Destroy(gameObject);
+            }
+            m_pHitList.Add(other.gameObject);
+        }
         if (other.tag == "Block")
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void DestroyEffect()
+    {
+        GameObject HitEffect = new GameObject();
+        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        HitEffect.AddComponent<EffectCubeScript>().Initialize(this.gameObject.transform.position, new Vector3(-0.7071f, 0.0f, -0.7071f), m_iType);
+        Destroy(this.gameObject);
     }
 
     public void Initialize(int _Type, Vector3 _Direction, float _Damage, float _Speed, int _Pierce, int _Multishot = 0)

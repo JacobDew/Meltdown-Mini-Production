@@ -24,6 +24,7 @@ TagManager:
   - Block
   - PerkMachine
   - StoreText
+  - Boss
   layers:
   - Default
   - TransparentFX

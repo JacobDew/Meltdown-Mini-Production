@@ -249,13 +249,11 @@ public class Player : MonoBehaviour
                 m_iAmmoCount -= 1;
                 RaycastHit HitPos;
                 Ray Temp = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.Log(m_iAmmoCount);
                 m_fLastShot = m_fFireDelay;
                 if (Physics.Raycast(Temp.origin, Temp.direction, out HitPos, LayerMask))
                 {
                     if (null != HitPos.point)
                     {
-                        Debug.Log(HitPos.point);
                         GameObject TempObject;
                         switch (m_iWeapon)
                         {
