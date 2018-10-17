@@ -73,6 +73,7 @@ public class BossHealth : MonoBehaviour
             m_fHealth = 0.0f;
             //  Scene transition delay.
             //  Go to credits.
+            GameObject.Find("Fade Canvas").GetComponent<LevelChanger>().FadeToLevel("Credits");
         }
         m_pBossHealth.GetComponent<Slider>().value = m_fHealth / m_fMaxHealth;
     }
