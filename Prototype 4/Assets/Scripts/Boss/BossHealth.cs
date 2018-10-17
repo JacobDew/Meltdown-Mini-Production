@@ -71,6 +71,7 @@ public class BossHealth : MonoBehaviour
         if (0.0f > m_fHealth)
         {
             m_fHealth = 0.0f;
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Boss FX 1");
             //  Scene transition delay.
             //  Go to credits.
             GameObject.Find("Fade Canvas").GetComponent<LevelChanger>().FadeToLevel("Credits");

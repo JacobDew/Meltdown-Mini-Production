@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1256258792724122}
+  m_RootGameObject: {fileID: 1086081501489478}
   m_IsPrefabAsset: 1
---- !u!1 &1256258792724122
+--- !u!1 &1086081501489478
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 224852820121918800}
-  - component: {fileID: 114866398637478784}
+  - component: {fileID: 224555044101523846}
+  - component: {fileID: 114680340852588254}
   m_Layer: 5
   m_Name: AudioManager
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114866398637478784
+--- !u!114 &114680340852588254
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1256258792724122}
+  m_GameObject: {fileID: 1086081501489478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 511fc4d27f69cc4489e269efe9249308, type: 3}
@@ -75,7 +75,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: b968887d223d33841b30669aeaace1cf, type: 3}
+  - clip: {fileID: 8300000, guid: df0db5c9a377d1245938d56da0fbd79b, type: 3}
     Name: Shotgun
     volume: 0.8
     pitch: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 52bdee5b0808d5943b49a5342a763675, type: 3}
     Name: Boss FX 1
     volume: 1
-    pitch: 1
+    pitch: 0.365
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 2061f5bcf043f944a80d75989f6e8cc6, type: 3}
@@ -129,8 +129,8 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 8aa66905dd8818e41b353842ec4cc186, type: 3}
-    Name: Enemy Walk
+  - clip: {fileID: 8300000, guid: bceb8d53b7aac4ebab89a8fd2e1139a5, type: 3}
+    Name: Wave Complete
     volume: 1
     pitch: 1
     loop: 0
@@ -153,12 +153,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
---- !u!224 &224852820121918800
+--- !u!224 &224555044101523846
 RectTransform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1256258792724122}
+  m_GameObject: {fileID: 1086081501489478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
   m_LocalScale: {x: 0.17958018, y: 0.17958018, z: 0.17958018}

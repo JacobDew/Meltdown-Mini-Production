@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
                 //  Consider image swaps once perk is owned.
                 case 0:
                     {
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Perk");
                         m_pPiercing.SetActive(true);
 
                         m_iBasePierce += 2;
@@ -231,6 +232,7 @@ public class Player : MonoBehaviour
                     break;
                 case 1:
                     {
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Perk");
                         m_pMultiShot.SetActive(true);
 
                         m_iMultiShot += 6;
@@ -239,6 +241,7 @@ public class Player : MonoBehaviour
                     break;
                 case 2:
                     {
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Perk");
                         m_pExtraLife.SetActive(true);
 
                         m_iLives += 1;

@@ -30,6 +30,7 @@ public class Currency : MonoBehaviour
 
     public void OpenPerkMenu()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Pause");
         m_pPerkMenu.SetActive(true);
         Time.timeScale = 0.0f;
     }
@@ -69,6 +70,7 @@ public class Currency : MonoBehaviour
 
     public void Return()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Menu Select");
         m_pPerkMenu.SetActive(false);
         Time.timeScale = 1.0f;
     }

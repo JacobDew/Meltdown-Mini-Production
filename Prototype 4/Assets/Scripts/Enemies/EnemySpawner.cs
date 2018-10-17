@@ -126,6 +126,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     m_pWaveCompleteText = GameObject.Find("WaveComplete");
                 }
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Wave Complete");
                 m_pWaveCompleteText.GetComponent<Text>().text = "Wave " + m_iWaveNumber.ToString() + " Complete!";
                 m_pWaveCompleteText.SetActive(true);
                 m_bWaveActive = false;
