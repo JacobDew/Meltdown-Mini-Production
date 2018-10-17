@@ -19,7 +19,7 @@ public class BossAttack : MonoBehaviour
 	// Use this for initialization
 	void Start()
     {
-        m_sFunctions = new string[] { "Attack1", "Attack2" };
+        m_sFunctions = new string[] { "Attack1", "Attack2", "Attack3" };
         m_pCubeZ = Resources.Load<GameObject>("EffectCubeZ");
         m_pPlayer = GameObject.FindGameObjectWithTag("Player");
     }
@@ -29,6 +29,13 @@ public class BossAttack : MonoBehaviour
     {
 		if (0.0001f > m_fTimer)
         {
+            if (3 > Random.Range(0, 8))
+            {
+                Invoke("Attack3", 0.0f);
+                Invoke("Attack3", 2.0f);
+                Invoke("Attack3", 3.0f);
+                Invoke("Attack3", 5.0f);
+            }
             Invoke(m_sFunctions[Random.Range(0, m_sFunctions.Length)], 0.0f);
         }
         m_fTimer -= Time.deltaTime;
@@ -55,7 +62,8 @@ public class BossAttack : MonoBehaviour
 
     void Attack3()
     {
-
+        GameObject TempPtr = Instantiate(Resources.Load<GameObject>("Pillar"));
+        TempPtr.transform.position = new Vector3(Random.Range(-25.0f, 44.0f), 5.0f, Random.Range(-27.0f, 37.0f));
     }
 
 }
