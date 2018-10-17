@@ -68,6 +68,12 @@ public class BossHealth : MonoBehaviour
     {
         Debug.Log("DamageTake Boss");
         m_fHealth -= _Damage;
+        if (0.0f > m_fHealth)
+        {
+            m_fHealth = 0.0f;
+            //  Scene transition delay.
+            //  Go to credits.
+        }
         m_pBossHealth.GetComponent<Slider>().value = m_fHealth / m_fMaxHealth;
     }
 }
