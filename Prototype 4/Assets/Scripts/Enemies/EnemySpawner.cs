@@ -82,11 +82,18 @@ public class EnemySpawner : MonoBehaviour
             }
             else if (0.0f < m_fWaveTimer)
             {
+                if (4.0f > m_fWaveTimer)
+                {
+                    if (null == m_pWaveCompleteText)
+                    {
+                        m_pWaveCompleteText = GameObject.Find("WaveComplete");
+                    }
+                    m_pWaveCompleteText.SetActive(false);
+                }
                 m_fWaveTimer -= Time.deltaTime;
                 //Debug.Log(m_fWaveTimer);
                 if (0.0f > m_fWaveTimer)
                 {
-                    m_pWaveCompleteText.SetActive(false);
                     m_bWaveActive = true;
                     m_iWaveNumber += 1;
                     m_iEnemyCount = 0;
@@ -115,6 +122,10 @@ public class EnemySpawner : MonoBehaviour
         {
             if (0 == GameObject.FindGameObjectsWithTag("Follower").Length)
             {
+                if (null == m_pWaveCompleteText)
+                {
+                    m_pWaveCompleteText = GameObject.Find("WaveComplete");
+                }
                 m_pWaveCompleteText.GetComponent<Text>().text = "Wave " + m_iWaveNumber.ToString() + " Complete!";
                 m_pWaveCompleteText.SetActive(true);
                 m_bWaveActive = false;
@@ -215,7 +226,7 @@ public class EnemySpawner : MonoBehaviour
         {
             case 1:
                 {
-                    if (m_iWaveMaxLv1 > m_iWaveNumber && false == m_bWaveActive)
+                    if (m_iWaveMaxLv1 > m_iWaveNumber && true == m_bWaveActive)
                     {
                         bComplete = false;
                     }
@@ -227,7 +238,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             case 2:
                 {
-                    if (m_iWaveMaxLv2 > m_iWaveNumber && false == m_bWaveActive)
+                    if (m_iWaveMaxLv2 > m_iWaveNumber && true == m_bWaveActive)
                     {
                         bComplete = false;
                     }
@@ -239,7 +250,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             case 3:
                 {
-                    if (m_iWaveMaxLv3 > m_iWaveNumber && false == m_bWaveActive)
+                    if (m_iWaveMaxLv3 > m_iWaveNumber && true == m_bWaveActive)
                     {
                         bComplete = false;
                     }

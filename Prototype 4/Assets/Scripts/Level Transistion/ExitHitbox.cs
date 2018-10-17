@@ -20,8 +20,13 @@ public class ExitHitbox : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if ( m_pSpawner.GetComponent<EnemySpawner>().m_iWaveNumber >= m_pSpawner.GetComponent<EnemySpawner>().GetMaxWave() && bFirst)
+	void Update()
+    {
+        if (null == m_pSpawner)
+        {
+            m_pSpawner = GameObject.Find("SpawnerControl");
+        }
+        else if (m_pSpawner.GetComponent<EnemySpawner>().m_iWaveNumber >= m_pSpawner.GetComponent<EnemySpawner>().GetMaxWave() && bFirst)
         {
             GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Door");
             m_DoorAnimator.SetTrigger("OpenDoor");
