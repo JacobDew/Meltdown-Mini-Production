@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
         {
             m_fHealth = 100.0f;
         }
-        if (0.01f > m_fHealth)
+        if (0.0001f > m_fHealth)
         {
             m_iLives -= 1;
             if (0 > m_iLives)
