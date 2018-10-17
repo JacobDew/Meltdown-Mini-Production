@@ -68612,6 +68612,11 @@ Prefab:
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 137432789084085928, guid: 38628f4df46ad364f81ee636f1aaedd5,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c4748e9ccf1d004e983b4f9af2f7caa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38628f4df46ad364f81ee636f1aaedd5, type: 2}
   m_IsPrefabAsset: 0
